@@ -65,26 +65,26 @@ const containerVariants: Variants = {
 };
 
 const wordVariants: Variants = {
-  hidden: { 
-    opacity: 0, 
-    filter: "blur(15px)", 
-    scale: 1.1, 
-    y: 20 
+  hidden: {
+    opacity: 0,
+    filter: "blur(15px)",
+    scale: 1.1,
+    y: 20
   },
-  visible: { 
-    opacity: 1, 
-    filter: "blur(0px)", 
-    scale: 1, 
+  visible: {
+    opacity: 1,
+    filter: "blur(0px)",
+    scale: 1,
     y: 0,
     transition: {
       duration: 0.8,
       ease: "easeInOut"
     }
   },
-  exit: { 
-    opacity: 0, 
-    filter: "blur(15px)", 
-    scale: 0.95, 
+  exit: {
+    opacity: 0,
+    filter: "blur(15px)",
+    scale: 0.95,
     y: -20,
     transition: {
       duration: 0.5
@@ -144,25 +144,34 @@ export default function Home() {
     <div className="min-h-screen bg-transparent selection:bg-blue-500/30">
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-[var(--color-border-subtle)] bg-[var(--color-bg)] backdrop-blur-xl">
-        <nav className={`max-w-7xl mx-auto flex items-center justify-between px-6 transition-all duration-300 ${isScrolled ? 'py-3' : 'py-6'}`}>
+        <nav className={`max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6 transition-all duration-300 ${isScrolled ? 'py-3' : 'py-4 md:py-6'}`}>
           <div className="flex items-center gap-2">
             <PiriLogo size={isScrolled ? 24 : 32} className={`text-[var(--color-text-primary)] transition-all duration-300`} />
             <span className={`font-semibold tracking-wide transition-all duration-300 ${isScrolled ? 'text-lg' : 'text-xl'}`}>Piri</span>
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3 md:gap-6">
             <button onClick={toggleTheme} className="p-2 rounded-full hover:bg-[var(--color-bg-card)] transition-colors" title="Toggle Theme">
               {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
             </button>
-            <a href="#" className="text-sm font-medium text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors">Features</a>
-            <GoogleSignIn />
+            <a href="#" className="hidden md:block text-sm font-medium text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors">Features</a>
+            <div className="hidden md:block">
+              <GoogleSignIn />
+            </div>
+
+            {/* Desktop only: Add to Chrome */}
             <a
               href={getChromeWebStoreInstallUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-1.5 bg-white text-black text-xs font-semibold rounded-full hover:bg-zinc-200 transition-all hover:scale-105"
+              className="hidden md:inline-flex px-4 py-1.5 bg-white text-black text-xs font-semibold rounded-full hover:bg-zinc-200 transition-all hover:scale-105"
             >
               Add to Chrome
             </a>
+
+            {/* Mobile only: Google Sign In (replaces Add to Chrome) */}
+            <div className="md:hidden">
+              <GoogleSignIn className="py-1.5 text-xs font-semibold" />
+            </div>
           </div>
         </nav>
       </header>
@@ -171,16 +180,16 @@ export default function Home() {
       <main className="pt-20">
 
         {/* Intro Section */}
-        <section className="text-center py-16 px-6">
+        <section className="text-center py-12 md:py-16 px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, scale: 0.8, y: -20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="flex justify-center mb-6"
           >
-            <PiriLogo size={64} className="text-[var(--color-text-primary)] opacity-90" />
+            <PiriLogo size={64} className="text-[var(--color-text-primary)] opacity-90 scale-75 md:scale-100" />
           </motion.div>
-          <div className="h-[140px] md:h-[180px] flex items-center justify-center mb-8 relative">
+          <div className="h-[120px] md:h-[180px] flex items-center justify-center mb-8 relative">
             <AnimatePresence>
               <motion.div
                 key={headingIndex}
@@ -190,13 +199,13 @@ export default function Home() {
                 variants={containerVariants}
                 className="flex flex-col items-center justify-center w-full absolute top-1/2 left-0 right-0 -translate-y-1/2"
               >
-                <h1 className="text-5xl md:text-6xl font-semibold tracking-tight leading-tight">
+                <h1 className="text-4xl md:text-6xl font-semibold tracking-tight leading-tight px-2">
                   <span className="block text-[var(--color-text-primary)] mb-2 md:mb-4">
                     {HERO_HEADINGS[headingIndex].main.split(" ").map((word, i) => (
-                      <motion.span 
-                        key={`main-${i}`} 
-                        variants={wordVariants} 
-                        className="inline-block mx-[0.15em] text-[var(--color-text-primary)]"
+                      <motion.span
+                        key={`main-${i}`}
+                        variants={wordVariants}
+                        className="inline-block mx-[0.1em] md:mx-[0.15em] text-[var(--color-text-primary)]"
                       >
                         {word}
                       </motion.span>
@@ -204,10 +213,10 @@ export default function Home() {
                   </span>
                   <span className="block text-[var(--color-text-secondary)]">
                     {HERO_HEADINGS[headingIndex].sub.split(" ").map((word, i) => (
-                      <motion.span 
-                        key={`sub-${i}`} 
-                        variants={wordVariants} 
-                        className="inline-block mx-[0.15em] text-[var(--color-text-secondary)]"
+                      <motion.span
+                        key={`sub-${i}`}
+                        variants={wordVariants}
+                        className="inline-block mx-[0.1em] md:mx-[0.15em] text-[var(--color-text-secondary)]"
                       >
                         {word}
                       </motion.span>
@@ -217,26 +226,32 @@ export default function Home() {
               </motion.div>
             </AnimatePresence>
           </div>
-          <p className="text-lg text-[var(--color-text-secondary)] max-w-xl mx-auto mb-8">
+          <p className="text-base md:text-lg text-[var(--color-text-secondary)] max-w-xl mx-auto mb-8 px-4">
             You scroll. You lose. Piri auto-indexes your AI chats. Now you don&apos;t. You&apos;re welcome.
           </p>
-          <div className="flex justify-center gap-4">
+          <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4 px-8">
+            {/* Desktop: Add to Chrome */}
             <a
               href={getChromeWebStoreInstallUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-2.5 bg-white text-black text-sm font-medium rounded-full hover:bg-zinc-200 transition-all"
+              className="hidden md:inline-flex items-center justify-center px-6 py-2.5 bg-white text-black text-sm font-medium rounded-full hover:bg-zinc-200 transition-all w-full sm:w-auto"
             >
               Add to Chrome
             </a>
-            <button 
+
+            {/* Mobile: Google Sign In */}
+            <div className="md:hidden w-full sm:w-auto">
+              <GoogleSignIn className="w-full justify-center px-6 py-2.5 shadow-lg" />
+            </div>
+            <button
               onClick={() => {
                 const demoSection = document.getElementById('demo-section');
                 if (demoSection) {
                   demoSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
               }}
-              className="px-6 py-2.5 bg-zinc-800 text-white text-sm font-medium rounded-full hover:bg-zinc-700 transition-all"
+              className="px-6 py-2.5 bg-zinc-800 text-white text-sm font-medium rounded-full hover:bg-zinc-700 transition-all w-full sm:w-auto"
             >
               Try Interactive Demo
             </button>
@@ -244,8 +259,8 @@ export default function Home() {
         </section>
 
         {/* Demo Workspace - Centered with Padding */}
-        <section id="demo-section" className="w-full px-6 md:px-12 lg:px-20 pb-20">
-          <div className="relative w-full max-w-7xl mx-auto h-[900px] rounded-3xl overflow-hidden border border-[var(--color-border-subtle)] bg-black shadow-2xl">
+        <section id="demo-section" className="w-full px-2 md:px-12 lg:px-20 pb-20">
+          <div className="relative w-full max-w-7xl mx-auto h-[600px] md:h-[900px] rounded-2xl md:rounded-3xl overflow-hidden border border-[var(--color-border-subtle)] bg-black shadow-2xl">
             {/* Background Image */}
             <div
               className="absolute inset-0 z-0 bg-cover bg-center opacity-80"
@@ -253,13 +268,32 @@ export default function Home() {
             />
 
             {/* Demo Container - Centered */}
-            <div className="relative z-10 w-full h-full flex items-center justify-center">
-              {/* Interactive Demo Component */}
-              <InteractiveDemo />
+            <div className="relative z-10 w-full h-full flex items-center justify-center overflow-hidden">
+
+              {/* Desktop: Interactive Demo */}
+              <div className="hidden md:block w-full h-full">
+                <InteractiveDemo />
+              </div>
+
+              {/* Mobile: Message */}
+              <div className="md:hidden flex flex-col items-center justify-center text-center p-8 space-y-6">
+                <div className="w-20 h-20 rounded-3xl bg-white/5 border border-white/10 flex items-center justify-center shadow-2xl backdrop-blur-xl">
+                  <svg className="w-10 h-10 text-white/50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <div className="space-y-2">
+                  <h3 className="text-2xl font-bold text-white tracking-tight">Desktop Experience</h3>
+                  <p className="text-zinc-400 max-w-xs mx-auto text-sm leading-relaxed">
+                    The interactive demo requires a larger screen. Please visit on a desktop computer to try it out.
+                  </p>
+                </div>
+              </div>
+
             </div>
 
-            <div className="absolute bottom-8 left-0 right-0 text-center z-20 pointer-events-none">
-              <span className="inline-flex items-center gap-2 px-4 py-2 bg-black/60 backdrop-blur-md rounded-full text-xs text-white/70 border border-white/10">
+            <div className="absolute bottom-4 md:bottom-8 left-0 right-0 text-center z-20 pointer-events-none hidden md:block">
+              <span className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-black/60 backdrop-blur-md rounded-full text-[10px] md:text-xs text-white/70 border border-white/10">
                 <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" /></svg>
                 Drag, Resize, & Interact
               </span>
@@ -272,12 +306,12 @@ export default function Home() {
 
       </main>
 
-      <footer className="relative overflow-hidden bg-[#050505] min-h-[100vh] flex flex-col justify-between">
-        
+      <footer className="relative overflow-hidden bg-[#050505] min-h-[50vh] md:min-h-[100vh] flex flex-col justify-between">
+
         {/* Massive Text Background - Positioned to be behind content */}
         <div className="absolute inset-0 flex items-end justify-center pointer-events-none select-none overflow-hidden z-0 pb-[5vh]">
-          <h2 
-            className="text-[45vw] font-black leading-none tracking-tighter"
+          <h2
+            className="text-[35vw] md:text-[45vw] font-black leading-none tracking-tighter"
             style={{
               background: 'linear-gradient(to bottom, #1a1a1a 0%, #050505 80%)',
               WebkitBackgroundClip: 'text',
@@ -291,26 +325,26 @@ export default function Home() {
         </div>
 
         {/* Content Wrapper */}
-        <div className="relative z-10 flex-1 flex flex-col items-center justify-center w-full">
-          
+        <div className="relative z-10 flex-1 flex flex-col items-center justify-center w-full py-20">
+
           {/* Background glow effects */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#A0816C]/5 rounded-full blur-[120px]" />
-          
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[600px] h-[150px] md:h-[300px] bg-[#A0816C]/5 rounded-full blur-[60px] md:blur-[120px]" />
+
           {/* Tagline & CTAs */}
-          <div className="text-center space-y-10 relative">
-            <h3 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
+          <div className="text-center space-y-6 md:space-y-10 relative px-4">
+            <h3 className="text-3xl md:text-5xl font-bold text-white tracking-tight">
               Ready to try Piri?
             </h3>
-            <p className="text-xl text-zinc-400 font-medium tracking-wide max-w-lg mx-auto">
+            <p className="text-base md:text-xl text-zinc-400 font-medium tracking-wide max-w-lg mx-auto">
               Free Chrome extension. Works with ChatGPT, Claude, and Gemini.
             </p>
-            
+
             <div className="flex justify-center gap-4 pt-4">
-              <a 
-                href={getChromeWebStoreInstallUrl()} 
+              <a
+                href={getChromeWebStoreInstallUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-10 py-4 bg-white text-black rounded-full font-bold text-base hover:bg-zinc-200 transition-all hover:scale-105 shadow-[0_0_40px_rgba(255,255,255,0.15)]"
+                className="px-8 py-3 md:px-10 md:py-4 bg-white text-black rounded-full font-bold text-sm md:text-base hover:bg-zinc-200 transition-all hover:scale-105 shadow-[0_0_40px_rgba(255,255,255,0.15)]"
               >
                 Add to Chrome
               </a>
@@ -320,7 +354,7 @@ export default function Home() {
 
         {/* Bottom Links */}
         <div className="relative z-20 w-full border-t border-white/[0.06] bg-[#050505]/30 backdrop-blur-sm">
-          <div className="max-w-7xl mx-auto py-8 px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="max-w-7xl mx-auto py-6 md:py-8 px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
             <div className="flex items-center gap-3 text-zinc-500">
               <PiriLogo size={20} className="text-[#A0816C]" />
               <span className="text-sm font-medium">© 2024 Piri</span>

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-export function GoogleSignIn() {
+export function GoogleSignIn({ className = '' }: { className?: string }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userName, setUserName] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -12,7 +12,7 @@ export function GoogleSignIn() {
       const userEmail = document.cookie
         .split('; ')
         .find(row => row.startsWith('user_email='));
-      
+
       const nameCookie = document.cookie
         .split('; ')
         .find(row => row.startsWith('user_name='));
@@ -45,7 +45,7 @@ export function GoogleSignIn() {
     const response = await fetch('/api/auth/signout', {
       method: 'POST',
     });
-    
+
     if (response.ok) {
       setIsAuthenticated(false);
       setUserName('');
@@ -55,7 +55,7 @@ export function GoogleSignIn() {
 
   if (isAuthenticated) {
     return (
-      <div className="flex items-center gap-3">
+      <div className={`flex items-center gap-3 ${className}`}>
         <span className="text-sm text-[var(--color-text-secondary)]">
           {userName || 'Signed in'}
         </span>
@@ -74,7 +74,7 @@ export function GoogleSignIn() {
     <button
       onClick={handleSignIn}
       disabled={isLoading}
-      className="flex items-center gap-2 px-4 py-2 bg-white text-black text-sm font-semibold rounded-full hover:bg-zinc-200 transition-all hover:scale-105 disabled:opacity-50"
+      className={`flex items-center gap-2 px-4 py-2 bg-white text-black text-sm font-semibold rounded-full hover:bg-zinc-200 transition-all hover:scale-105 disabled:opacity-50 ${className}`}
     >
       <svg className="w-5 h-5" viewBox="0 0 24 24">
         <path

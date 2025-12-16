@@ -113,7 +113,26 @@ function DemoWindow({
     const [messages, setMessages] = useState<Message[]>(DATA);
     const [inputValue, setInputValue] = useState("");
     const [position, setPosition] = useState(initialPos);
-    const [size, setSize] = useState({ width: 900, height: 650 }); // Reduced size
+
+    // Adaptive initial size
+    const [size, setSize] = useState({ width: 900, height: 650 });
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const updateSize = () => {
+            const mobile = window.innerWidth < 768;
+            setIsMobile(mobile);
+            if (mobile) {
+                setSize({ width: window.innerWidth - 32, height: 500 });
+            } else {
+                setSize({ width: 900, height: 650 });
+            }
+        };
+        updateSize();
+        window.addEventListener('resize', updateSize);
+        return () => window.removeEventListener('resize', updateSize);
+    }, []);
+
     const [isMaximized, setIsMaximized] = useState(false);
     const [isMinimized, setIsMinimized] = useState(false);
 
@@ -153,17 +172,17 @@ function DemoWindow({
 
     const hierarchicalTOC = useMemo(() => {
         const result: Array<{ id: string; type: string; text: string; children?: Array<{ id: string; type: string; text: string }> }> = [];
-        
+
         messages.forEach((m, i) => {
             if (m.role === 'user') {
                 result.push({ id: `msg-${i}`, type: 'user', text: m.content || "User Message" });
             }
             if (m.role === 'assistant' && m.sections) {
                 let currentH2: { id: string; type: string; text: string; children?: Array<{ id: string; type: string; text: string }> } | null = null;
-                
+
                 m.sections.forEach(s => {
                     if (!s.text) return;
-                    
+
                     if (s.type === 'h2') {
                         if (currentH2) result.push(currentH2);
                         currentH2 = { id: s.id, type: s.type, text: s.text, children: [] };
@@ -178,30 +197,30 @@ function DemoWindow({
                         result.push({ id: s.id, type: s.type, text: s.text });
                     }
                 });
-                
+
                 if (currentH2) result.push(currentH2);
             }
         });
-        
+
         return result;
     }, [messages]);
 
     const filteredTOC = useMemo(() => {
         const filterItem = (item: { id: string; type: string; text: string; children?: Array<{ id: string; type: string; text: string }> }): boolean => {
             const matchesSearch = !searchQuery || item.text.toLowerCase().includes(searchQuery.toLowerCase());
-            const matchesFilter = activeFilter === 'All' || 
+            const matchesFilter = activeFilter === 'All' ||
                 (activeFilter === 'User' && item.type === 'user') ||
                 (activeFilter === 'Assistant' && item.type !== 'user') ||
                 (['H1', 'H2', 'H3'].includes(activeFilter) && item.type === activeFilter.toLowerCase());
-            
+
             if (item.children) {
                 const hasMatchingChild = item.children.some(child => filterItem(child));
                 return (matchesSearch && matchesFilter) || hasMatchingChild;
             }
-            
+
             return matchesSearch && matchesFilter;
         };
-        
+
         return hierarchicalTOC.filter(filterItem);
     }, [hierarchicalTOC, searchQuery, activeFilter]);
 
@@ -273,7 +292,7 @@ function DemoWindow({
 
     // Mouse Handlers
     const handleMouseDown = useCallback((e: React.MouseEvent) => {
-        if (isMaximized) return;
+        if (isMaximized || isMobile) return;
         if ((e.target as HTMLElement).closest('button')) return;
         if ((e.target as HTMLElement).closest('.resize-handle')) return;
 
@@ -281,7 +300,7 @@ function DemoWindow({
         setIsDragging(true);
         setDragOffset({ x: e.clientX - position.x, y: e.clientY - position.y });
         clearInterval(autoPlayTimer.current); // Stop animation on interaction
-    }, [position, isMaximized, onFocus]);
+    }, [position, isMaximized, onFocus, isMobile]);
 
     // Global Move
     useEffect(() => {
@@ -335,11 +354,11 @@ function DemoWindow({
     // Piri Component
     const PiriSidebar = (
         <div className={`flex flex-col flex-shrink-0 relative z-20 font-sans overflow-hidden transition-all duration-300
-            ${layoutMode === 'popup' 
-                ? 'rounded-[28px] border border-[var(--color-border-subtle)] shadow-[0_25px_80px_-15px_rgba(0,0,0,0.8),0_0_0_1px_rgba(255,255,255,0.04)] bg-[var(--piri-bg)]/95 backdrop-blur-2xl' 
+            ${layoutMode === 'popup'
+                ? 'rounded-[28px] border border-[var(--color-border-subtle)] shadow-[0_25px_80px_-15px_rgba(0,0,0,0.8),0_0_0_1px_rgba(255,255,255,0.04)] bg-[var(--piri-bg)]/95 backdrop-blur-2xl'
                 : 'border-l border-[var(--color-border-subtle)] bg-[var(--piri-bg)]/95'}`}
             style={{
-                width: piriW,
+                width: isMobile ? '100%' : piriW,
                 height: layoutMode === 'popup' ? '500px' : 'auto',
                 maxHeight: '100%',
                 position: layoutMode === 'popup' ? 'absolute' : 'relative',
@@ -377,7 +396,7 @@ function DemoWindow({
                                 <SearchIcon />
                             </div>
                         </div>
-                        
+
                         <input
                             className="flex-1 bg-transparent border-none outline-none text-[14px] text-[var(--color-text-primary)] font-medium tracking-tight placeholder-[var(--color-text-muted)]"
                             placeholder="Search sections..."
@@ -396,8 +415,8 @@ function DemoWindow({
                         onClick={() => setActiveFilter(filter)}
                         className={`
                             px-2.5 py-1 rounded-full text-[10px] font-medium transition-all duration-200 flex-shrink-0
-                            ${activeFilter === filter 
-                                ? 'bg-[var(--color-bg-card)] text-[var(--color-text-primary)]' 
+                            ${activeFilter === filter
+                                ? 'bg-[var(--color-bg-card)] text-[var(--color-text-primary)]'
                                 : 'text-[var(--color-text-primary)] hover:bg-[var(--piri-item-hover)]'
                             }
                         `}
@@ -407,8 +426,8 @@ function DemoWindow({
                 ))}
             </div>
 
-            {/* Resize Handle (if not popup) */}
-            {layoutMode !== 'popup' && <div className="absolute left-0 top-0 bottom-0 w-1 cursor-col-resize hover:bg-[#A0816C]/50 z-20" onMouseDown={(e) => { e.stopPropagation(); setResizeRole('piri') }} />}
+            {/* Resize Handle (if not popup and not mobile) */}
+            {layoutMode !== 'popup' && !isMobile && <div className="absolute left-0 top-0 bottom-0 w-1 cursor-col-resize hover:bg-[#A0816C]/50 z-20" onMouseDown={(e) => { e.stopPropagation(); setResizeRole('piri') }} />}
 
             {/* Results List */}
             <div className="flex-1 overflow-y-auto px-4 pb-2 custom-scrollbar">
@@ -424,20 +443,20 @@ function DemoWindow({
                         const isH3 = item.type === 'h3';
                         const isActive = activeSection === item.id;
                         const hasChildren = item.children && item.children.length > 0;
-                        
+
                         return (
                             <div key={`${item.id}-${idx}`} className="flex flex-col">
                                 {/* Main Item */}
                                 <div
                                     onClick={(e) => {
-                                        e.stopPropagation(); 
+                                        e.stopPropagation();
                                         clearInterval(autoPlayTimer.current);
                                         scrollToSection(item.id);
                                     }}
                                     className={`
                                         group relative flex items-center gap-2 px-2 py-2 rounded cursor-pointer transition-all duration-150
-                                        ${isActive 
-                                            ? 'bg-[var(--piri-active-bg)]' 
+                                        ${isActive
+                                            ? 'bg-[var(--piri-active-bg)]'
                                             : 'hover:bg-[var(--piri-item-hover)]'
                                         }
                                         ${isH3 ? 'ml-6' : ''}
@@ -449,28 +468,27 @@ function DemoWindow({
                                             <ChevronLeftIcon />
                                         </div>
                                     )}
-                                    
+
                                     {/* Type Badge */}
                                     <div className={`
                                         flex-shrink-0 px-1.5 py-0.5 rounded text-[9px] font-semibold tracking-wide border
-                                        ${isUser 
-                                            ? 'bg-purple-500/10 text-purple-400 border-purple-500/20' 
+                                        ${isUser
+                                            ? 'bg-purple-500/10 text-purple-400 border-purple-500/20'
                                             : 'bg-[var(--color-bg-card)] text-[var(--color-text-muted)] border-[var(--color-border-subtle)]'
                                         }
                                     `}>
                                         {isUser ? 'User' : item.type.toUpperCase()}
                                     </div>
-                                    
+
                                     {/* Text */}
                                     <div className="flex-1 min-w-0">
-                                        <div className={`text-[12px] leading-tight truncate transition-colors ${
-                                            'text-[var(--color-text-primary)]'
-                                        }`}>
+                                        <div className={`text-[12px] leading-tight truncate transition-colors ${'text-[var(--color-text-primary)]'
+                                            }`}>
                                             {item.text || "Introduction"}
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 {/* H3 Children */}
                                 {hasChildren && item.children && item.children.map((child, childIdx) => {
                                     const isChildActive = activeSection === child.id;
@@ -478,14 +496,14 @@ function DemoWindow({
                                         <div
                                             key={`${child.id}-${childIdx}`}
                                             onClick={(e) => {
-                                                e.stopPropagation(); 
+                                                e.stopPropagation();
                                                 clearInterval(autoPlayTimer.current);
                                                 scrollToSection(child.id);
                                             }}
                                             className={`
                                                 group relative flex items-center gap-2 px-2 py-2 ml-6 rounded cursor-pointer transition-all duration-150
-                                                ${isChildActive 
-                                                    ? 'bg-[var(--piri-active-bg)]' 
+                                                ${isChildActive
+                                                    ? 'bg-[var(--piri-active-bg)]'
                                                     : 'hover:bg-[var(--piri-item-hover)]'
                                                 }
                                             `}
@@ -494,7 +512,7 @@ function DemoWindow({
                                             <div className="flex-shrink-0 px-1.5 py-0.5 rounded text-[9px] font-semibold tracking-wide border bg-[var(--color-bg-card)] text-[var(--color-text-muted)] border-[var(--color-border-subtle)]">
                                                 {child.type.toUpperCase()}
                                             </div>
-                                            
+
                                             {/* Text */}
                                             <div className="flex-1 min-w-0">
                                                 <div className="text-[12px] leading-tight truncate transition-colors text-[var(--color-text-primary)]">
@@ -515,10 +533,10 @@ function DemoWindow({
 
     return (
         <div
-            className="relative perspective-1000"
+            className="relative perspective-1000 w-full"
             style={{
-                transform: isMaximized ? 'none' : `translate3d(${position.x}px, ${position.y}px, 0)`,
-                width: isMaximized ? '100%' : 'auto',
+                transform: isMaximized ? 'none' : `translate3d(${isMobile ? 0 : position.x}px, ${isMobile ? 0 : position.y}px, 0)`,
+                width: isMaximized || isMobile ? '100%' : 'auto',
                 height: isMaximized ? '100%' : 'auto',
                 zIndex: zIndex,
                 transition: isDragging || resizeRole ? 'none' : 'transform 0.15s ease-out'
@@ -628,7 +646,7 @@ function DemoWindow({
                 )}
 
                 {/* Resize Handle */}
-                {!isMaximized && !isMinimized && (
+                {!isMaximized && !isMinimized && !isMobile && (
                     <div className="absolute bottom-0 right-0 w-4 h-4 cursor-nwse-resize z-30 resize-handle opacity-50 hover:opacity-100 p-0.5" onMouseDown={(e) => { e.stopPropagation(); setResizeRole('window') }}>
                         <div className="w-full h-full border-r-2 border-b-2 border-zinc-500"></div>
                     </div>
