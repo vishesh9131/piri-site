@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG to PNG Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        .preview {
+            margin: 20px 0;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .preview-item {
+            text-align: center;
+        }
+        canvas {
+            border: 1px solid #ddd;
+            margin: 10px;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        button:hover {
+            background: #5568d3;
+        }
+        .info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SVG to PNG Icon Converter</h1>
+        <div class="info">
+            <p>This tool will convert your SVG icon to PNG files at 16x16, 48x48, and 128x128 pixels.</p>
+            <p>Click "Convert All" to generate all three sizes, then right-click each preview to save.</p>
+        </div>
+        
+        <div>
+            <label for="svgFile">Select SVG file:</label>
+            <input type="file" id="svgFile" accept=".svg" />
+        </div>
+        
+        <div style="margin: 20px 0;">
+            <button onclick="convertAll()">Convert All Sizes</button>
+            <button onclick="downloadAll()">Download All</button>
+        </div>
+        
+        <div class="preview" id="preview"></div>
+    </div>
+
+    <script>
+        let svgContent = '';
+        const sizes = [16, 48, 128];
+        const canvases = {};
+        const contexts = {};
+
+        document.getElementById('svgFile').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    svgContent = e.target.result;
+                    convertAll();
+                };
+                reader.readAsText(file);
+            }
+        });
+
+        // Load the icon.svg file automatically
+        window.addEventListener('load', function() {
+            fetch('icon.svg')
+                .then(response => response.text())
+                .then(svg => {
+                    svgContent = svg;
+                    convertAll();
+                })
+                .catch(err => {
+                    console.log('Could not auto-load icon.svg. Please select the file manually.');
+                });
+        });
+
+        function convertAll() {
+            if (!svgContent) {
+                alert('Please select an SVG file first');
+                return;
+            }
+
+            const preview = document.getElementById('preview');
+            preview.innerHTML = '';
+
+            sizes.forEach(size => {
+                const canvas = document.createElement('canvas');
+                canvas.width = size;
+                canvas.height = size;
+                canvas.id = `canvas-${size}`;
+                canvases[size] = canvas;
+                contexts[size] = canvas.getContext('2d');
+
+                const img = new Image();
+                const svgBlob = new Blob([svgContent], { type: 'image/svg+xml;charset=utf-8' });
+                const url = URL.createObjectURL(svgBlob);
+
+                img.onload = function() {
+                    contexts[size].drawImage(img, 0, 0, size, size);
+                    URL.revokeObjectURL(url);
+
+                    const previewItem = document.createElement('div');
+                    previewItem.className = 'preview-item';
+                    previewItem.innerHTML = `
+                        <h3>${size}x${size}</h3>
+                        <canvas id="canvas-${size}" width="${size}" height="${size}" style="width: ${size * 2}px; height: ${size * 2}px;"></canvas>
+                        <br>
+                        <button onclick="downloadSize(${size})">Download icon${size}.png</button>
+                    `;
+                    preview.appendChild(previewItem);
+
+                    // Copy the canvas to the preview
+                    const previewCanvas = previewItem.querySelector(`#canvas-${size}`);
+                    const previewCtx = previewCanvas.getContext('2d');
+                    previewCtx.drawImage(canvas, 0, 0, size, size);
+                };
+
+                img.src = url;
+            });
+        }
+
+        function downloadSize(size) {
+            const canvas = canvases[size];
+            if (!canvas) {
+                alert(`Canvas for ${size}x${size} not ready yet`);
+                return;
+            }
+
+            canvas.toBlob(function(blob) {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `icon${size}.png`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            });
+        }
+
+        function downloadAll() {
+            sizes.forEach(size => {
+                setTimeout(() => downloadSize(size), size * 10);
+            });
+        }
+    </script>
+</body>
+</html>
+

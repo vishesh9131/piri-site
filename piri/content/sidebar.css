@@ -1,0 +1,2248 @@
+/* Piri Sidebar Styles - Platform-Specific UI Design */
+
+/* ========================================
+   CSS Variables - Base (Default/ChatGPT)
+   ======================================== */
+:root {
+    --piri-primary: #353740;
+    --piri-secondary: #2d2e35;
+    --piri-bg: rgba(32, 33, 35, 0.98);
+    --piri-bg-light: rgba(255, 255, 255, 0.05);
+    --piri-bg-hover: rgba(255, 255, 255, 0.1);
+    --piri-border: rgba(255, 255, 255, 0.1);
+    --piri-text: #ececf1;
+    --piri-text-muted: rgba(255, 255, 255, 0.5);
+    --piri-accent: #353740;
+    --piri-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --piri-radius: 12px;
+    --piri-width: 320px;
+    --piri-header-bg: rgba(0, 0, 0, 0.2);
+}
+
+/* ========================================
+   Platform: ChatGPT Theme (Light Mode - Default)
+   ======================================== */
+.piri-sidebar.piri-platform-chatgpt {
+    --piri-primary: #353740;
+    --piri-secondary: #2d2e35;
+    --piri-bg: #f7f7f8;
+    --piri-bg-light: rgba(0, 0, 0, 0.03);
+    --piri-bg-hover: rgba(0, 0, 0, 0.05);
+    --piri-border: rgba(0, 0, 0, 0.08);
+    --piri-text: #353740;
+    --piri-text-muted: rgba(53, 55, 64, 0.6);
+    --piri-accent: #353740;
+    --piri-header-bg: transparent;
+    font-family: 'Söhne', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    border-left: 1px solid rgba(0, 0, 0, 0.08);
+    background: #f7f7f8;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
+}
+
+/* ========================================
+   Platform: ChatGPT Theme (Dark Mode)
+   ======================================== */
+.piri-sidebar.piri-platform-chatgpt.piri-chatgpt-dark {
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    --piri-primary: #ececf1;
+    --piri-secondary: #d1d5db;
+    --piri-bg: #171717;
+    --piri-bg-light: rgba(255, 255, 255, 0.03);
+    --piri-bg-hover: rgba(255, 255, 255, 0.05);
+    --piri-border: rgba(255, 255, 255, 0.1);
+    --piri-text: #ececf1;
+    --piri-text-muted: rgba(255, 255, 255, 0.6);
+    --piri-accent: #ececf1;
+    --piri-header-bg: transparent;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    background: #171717;
+}
+
+.piri-sidebar.piri-platform-chatgpt.piri-chatgpt-dark .piri-logo-text {
+    color: #ececf1;
+    -webkit-text-fill-color: #ececf1;
+}
+
+.piri-sidebar.piri-platform-chatgpt.piri-chatgpt-dark .piri-platform-badge {
+    background: #ececf1;
+    color: #212121;
+}
+
+.piri-sidebar.piri-platform-chatgpt.piri-chatgpt-dark .piri-filter-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.piri-sidebar.piri-platform-chatgpt.piri-chatgpt-dark .piri-filter-btn.piri-active {
+    background: #ececf1;
+    border-color: #ececf1;
+    color: #212121;
+}
+
+.piri-sidebar.piri-platform-chatgpt.piri-chatgpt-dark .piri-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.piri-sidebar.piri-platform-chatgpt.piri-chatgpt-dark .piri-item.piri-active {
+    background: transparent;
+    border-left: none;
+    color: inherit;
+}
+
+.piri-sidebar.piri-platform-chatgpt.piri-chatgpt-dark .piri-search-input {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ececf1;
+}
+
+.piri-sidebar.piri-platform-chatgpt.piri-chatgpt-dark .piri-search-input:focus {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.piri-sidebar.piri-platform-chatgpt.piri-chatgpt-dark .piri-toggle {
+    background: #ececf1;
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
+}
+
+.piri-sidebar.piri-platform-chatgpt.piri-chatgpt-dark .piri-btn {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.piri-sidebar.piri-platform-chatgpt.piri-chatgpt-dark .piri-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.piri-sidebar.piri-platform-chatgpt.piri-chatgpt-dark .piri-footer-btn {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.piri-sidebar.piri-platform-chatgpt.piri-chatgpt-dark .piri-footer-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.piri-sidebar.piri-platform-chatgpt.piri-chatgpt-dark .piri-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.piri-sidebar.piri-platform-chatgpt.piri-chatgpt-dark .piri-role-user,
+.piri-sidebar.piri-platform-chatgpt.piri-chatgpt-dark .piri-role-assistant {
+    background: #ececf1;
+}
+
+.piri-sidebar.piri-platform-chatgpt.piri-chatgpt-dark .piri-section-header {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.piri-sidebar.piri-platform-chatgpt.piri-chatgpt-dark .piri-item-icon {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.piri-sidebar.piri-platform-chatgpt.piri-chatgpt-dark .piri-search {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.piri-sidebar.piri-platform-chatgpt.piri-chatgpt-dark .piri-filters {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.piri-sidebar.piri-platform-chatgpt.piri-chatgpt-dark .piri-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#piri-scroll-meter.piri-platform-chatgpt.piri-chatgpt-dark {
+    background: transparent;
+    color: #ffffff !important;
+}
+
+#piri-scroll-meter.piri-platform-chatgpt.piri-chatgpt-dark .piri-scroll-btn {
+    color: #ffffff !important;
+    opacity: 1 !important;
+}
+
+#piri-scroll-meter.piri-platform-chatgpt.piri-chatgpt-dark .piri-scroll-btn:hover {
+    opacity: 1 !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+}
+
+#piri-scroll-meter.piri-platform-chatgpt.piri-chatgpt-dark .piri-scroll-dot {
+    background: #ffffff !important;
+    opacity: 1 !important;
+    color: #ffffff !important;
+}
+
+#piri-scroll-meter.piri-platform-chatgpt.piri-chatgpt-dark .piri-scroll-dot-wrapper:hover .piri-scroll-dot {
+    background: #ffffff !important;
+    opacity: 1 !important;
+    color: #ffffff !important;
+}
+
+#piri-scroll-meter.piri-platform-chatgpt.piri-chatgpt-dark .piri-scroll-dot.piri-active {
+    opacity: 1 !important;
+    background: #ffffff !important;
+    color: #ffffff !important;
+}
+
+#piri-scroll-meter.piri-platform-chatgpt.piri-chatgpt-dark .piri-scroll-dot.piri-active:hover {
+    background: #ffffff !important;
+    opacity: 1 !important;
+    color: #ffffff !important;
+}
+
+#piri-scroll-meter.piri-platform-chatgpt.piri-chatgpt-dark .piri-scroll-dot-wrapper {
+    color: #ffffff !important;
+}
+
+#piri-scroll-meter.piri-platform-chatgpt.piri-chatgpt-dark .piri-scroll-thumb {
+    background: #ffffff !important;
+    opacity: 0.8 !important;
+}
+
+#piri-scroll-meter.piri-platform-chatgpt.piri-chatgpt-dark .piri-scroll-btn svg {
+    stroke: #ffffff !important;
+    color: #ffffff !important;
+    fill: #ffffff !important;
+}
+
+#piri-scroll-meter.piri-platform-chatgpt.piri-chatgpt-dark .piri-scroll-dot-wrapper {
+    color: #ffffff !important;
+}
+
+#piri-scroll-meter.piri-platform-chatgpt.piri-chatgpt-dark .piri-scroll-tooltip {
+    background: #2f2f2f;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ececf1;
+    font-family: 'Söhne', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    font-size: 13px;
+    padding: 10px 14px;
+}
+
+#piri-scroll-meter.piri-platform-chatgpt.piri-chatgpt-dark .piri-scroll-tooltip::after {
+    border-left-color: #2f2f2f;
+}
+
+.piri-sidebar.piri-platform-chatgpt .piri-logo-text {
+    color: #353740;
+    font-weight: 300;
+    background: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: #353740;
+    background-clip: unset;
+}
+
+.piri-sidebar.piri-platform-chatgpt .piri-platform-badge {
+    background: #353740;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 11px;
+    padding: 4px 8px;
+}
+
+.piri-sidebar.piri-platform-chatgpt .piri-filter-btn {
+    border-radius: 6px;
+    font-weight: 400;
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--piri-text-muted);
+    padding: 6px 10px;
+    font-size: 12px;
+}
+
+.piri-sidebar.piri-platform-chatgpt .piri-filter-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--piri-text);
+}
+
+.piri-sidebar.piri-platform-chatgpt .piri-filter-btn.piri-active {
+    background: #353740;
+    border-color: #353740;
+    color: #ffffff;
+}
+
+.piri-sidebar.piri-platform-chatgpt .piri-item {
+    border-radius: 6px;
+    margin: 1px 8px;
+    padding: 8px 12px;
+    border-left: none;
+}
+
+.piri-sidebar.piri-platform-chatgpt .piri-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.piri-sidebar.piri-platform-chatgpt .piri-item.piri-active {
+    background: transparent;
+    border-left: none;
+    color: inherit;
+}
+
+.piri-sidebar.piri-platform-chatgpt .piri-search-input {
+    border-radius: 6px;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    font-size: 13px;
+    color: #353740;
+}
+
+.piri-sidebar.piri-platform-chatgpt .piri-search-input:focus {
+    border-color: rgba(53, 55, 64, 0.2);
+    box-shadow: none;
+    background: #ffffff;
+}
+
+.piri-sidebar.piri-platform-chatgpt .piri-toggle {
+    background: #353740;
+    box-shadow: 0 2px 8px rgba(53, 55, 64, 0.3);
+}
+
+.piri-sidebar.piri-platform-chatgpt .piri-btn {
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.piri-sidebar.piri-platform-chatgpt .piri-btn:hover {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.12);
+}
+
+.piri-sidebar.piri-platform-chatgpt .piri-footer-btn {
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.piri-sidebar.piri-platform-chatgpt .piri-footer-btn:hover {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.12);
+}
+
+.piri-sidebar.piri-platform-chatgpt .piri-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    background: transparent;
+    padding: 14px 16px;
+}
+
+.piri-sidebar.piri-platform-chatgpt .piri-role-user {
+    background: #353740;
+    width: 6px;
+    height: 6px;
+}
+
+.piri-sidebar.piri-platform-chatgpt .piri-role-assistant {
+    background: #353740;
+    width: 6px;
+    height: 6px;
+}
+
+.piri-sidebar.piri-platform-chatgpt .piri-section-header {
+    color: rgba(53, 55, 64, 0.6);
+    font-size: 10px;
+    font-weight: 500;
+    padding: 6px 16px;
+}
+
+.piri-sidebar.piri-platform-chatgpt .piri-item-icon {
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    font-size: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+.piri-sidebar.piri-platform-chatgpt .piri-item-text {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--piri-text);
+    line-height: 1.5;
+}
+
+.piri-sidebar.piri-platform-chatgpt .piri-content {
+    padding: 8px 0;
+}
+
+.piri-sidebar.piri-platform-chatgpt .piri-search {
+    padding: 10px 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.piri-sidebar.piri-platform-chatgpt .piri-filters {
+    padding: 8px 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.piri-sidebar.piri-platform-chatgpt .piri-footer {
+    padding: 10px 16px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+#piri-scroll-meter.piri-platform-chatgpt {
+    width: 32px;
+    right: 16px;
+    background: transparent;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+#piri-scroll-meter.piri-platform-chatgpt .piri-scroll-btn {
+    color: rgba(0, 0, 0, 0.5);
+    opacity: 0.7;
+}
+
+#piri-scroll-meter.piri-platform-chatgpt .piri-scroll-btn:hover {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.08);
+    color: rgba(0, 0, 0, 0.8);
+}
+
+#piri-scroll-meter.piri-platform-chatgpt .piri-scroll-dot-wrapper:hover {
+    background: rgba(0, 0, 0, 0.06);
+}
+
+#piri-scroll-meter.piri-platform-chatgpt .piri-scroll-dot {
+    background: rgba(0, 0, 0, 0.35);
+    opacity: 1;
+    width: var(--dot-size, 5px);
+    height: var(--dot-size, 5px);
+}
+
+#piri-scroll-meter.piri-platform-chatgpt .piri-scroll-dot-wrapper:hover .piri-scroll-dot {
+    background: rgba(0, 0, 0, 0.7);
+    transform: scale(1.5);
+}
+
+#piri-scroll-meter.piri-platform-chatgpt .piri-scroll-dot.piri-active {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.75);
+    width: calc(var(--dot-size, 5px) + 2px);
+    height: calc(var(--dot-size, 5px) + 2px);
+}
+
+#piri-scroll-meter.piri-platform-chatgpt .piri-scroll-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 0.7;
+}
+
+#piri-scroll-meter.piri-platform-chatgpt .piri-scroll-tooltip {
+    background: #2f2f2f;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ececf1;
+    font-family: 'Söhne', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    font-size: 13px;
+    padding: 10px 14px;
+}
+
+#piri-scroll-meter.piri-platform-chatgpt .piri-scroll-tooltip::after {
+    border-left-color: #2f2f2f;
+}
+
+/* ========================================
+   Platform: Claude Theme
+   ======================================== */
+/* Claude Light Theme (default) */
+.piri-sidebar.piri-platform-claude.piri-claude-light {
+    --piri-primary: #C15F3C;
+    --piri-secondary: #B1ADA1;
+    --piri-bg: #F4F3EE;
+    --piri-bg-light: rgba(193, 95, 60, 0.08);
+    --piri-bg-hover: rgba(193, 95, 60, 0.12);
+    --piri-border: #B1ADA1;
+    --piri-text: #2b2928;
+    --piri-text-muted: #B1ADA1;
+    --piri-accent: #C15F3C;
+    --piri-header-bg: #F4F3EE;
+    font-family: 'Söhne', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    border-left: 1px solid #B1ADA1;
+    border-radius: 0;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: #F4F3EE !important;
+    color: #2b2928 !important;
+}
+
+/* Claude Dark Theme */
+.piri-sidebar.piri-platform-claude.piri-claude-dark {
+    --piri-primary: #C15F3C;
+    --piri-secondary: #B1ADA1;
+    --piri-bg: rgba(43, 41, 40, 0.98);
+    --piri-bg-light: rgba(193, 95, 60, 0.08);
+    --piri-bg-hover: rgba(193, 95, 60, 0.12);
+    --piri-border: rgba(255, 255, 255, 0.06);
+    --piri-text: #f5f4f3;
+    --piri-text-muted: rgba(255, 255, 255, 0.45);
+    --piri-accent: #C15F3C;
+    --piri-header-bg: rgba(0, 0, 0, 0.25);
+    font-family: 'Söhne', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    border-left: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 0;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(43, 41, 40, 0.98) !important;
+    color: #f5f4f3 !important;
+}
+
+/* Fallback for Claude without theme class */
+.piri-sidebar.piri-platform-claude:not(.piri-claude-light):not(.piri-claude-dark) {
+    --piri-primary: #C15F3C;
+    --piri-secondary: #B1ADA1;
+    --piri-bg: rgba(43, 41, 40, 0.98);
+    --piri-bg-light: rgba(193, 95, 60, 0.08);
+    --piri-bg-hover: rgba(193, 95, 60, 0.12);
+    --piri-border: rgba(255, 255, 255, 0.06);
+    --piri-text: #f5f4f3;
+    --piri-text-muted: rgba(255, 255, 255, 0.45);
+    --piri-accent: #C15F3C;
+    --piri-header-bg: rgba(0, 0, 0, 0.25);
+    font-family: 'Söhne', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    border-left: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 0;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(43, 41, 40, 0.98) !important;
+    color: #f5f4f3 !important;
+}
+
+.piri-sidebar.piri-platform-claude.piri-claude-light .piri-logo-text {
+    background: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+    background-clip: unset;
+    color: #2b2928;
+    font-weight: 600;
+}
+
+.piri-sidebar.piri-platform-claude.piri-claude-dark .piri-logo-text,
+.piri-sidebar.piri-platform-claude:not(.piri-claude-light):not(.piri-claude-dark) .piri-logo-text {
+    background: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+    background-clip: unset;
+    color: #f5f4f3;
+    font-weight: 600;
+}
+
+.piri-sidebar.piri-platform-claude .piri-logo-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent !important;
+    border: none !important;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.piri-sidebar.piri-platform-claude .piri-logo-icon svg {
+    width: 20px !important;
+    height: 20px !important;
+    max-width: 20px;
+    max-height: 20px;
+}
+
+.piri-sidebar.piri-platform-claude .piri-logo-icon svg path,
+.piri-sidebar.piri-platform-claude .piri-logo-icon svg rect {
+    fill: #C15F3C;
+}
+
+.piri-sidebar.piri-platform-claude .piri-logo-icon svg path[stroke] {
+    stroke: #C15F3C;
+}
+
+.piri-sidebar.piri-platform-claude .piri-platform-badge {
+    background: rgba(193, 95, 60, 0.15);
+    color: #C15F3C;
+    border: 1px solid rgba(193, 95, 60, 0.3);
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+.piri-sidebar.piri-platform-claude .piri-filter-btn.piri-active,
+.piri-sidebar.piri-platform-claude .piri-item.piri-active {
+    background: transparent;
+    border-color: transparent;
+    color: inherit;
+}
+
+.piri-sidebar.piri-platform-claude .piri-item.piri-highlighted {
+    background: transparent;
+}
+
+.piri-sidebar.piri-platform-claude.piri-claude-light .piri-toggle {
+    background: #F4F3EE;
+    border: 1px solid #B1ADA1;
+    box-shadow: none !important;
+}
+
+.piri-sidebar.piri-platform-claude.piri-claude-light .piri-toggle:hover {
+    background: #e8e7e2;
+    border-color: #C15F3C;
+    box-shadow: none !important;
+}
+
+.piri-sidebar.piri-platform-claude.piri-claude-dark .piri-toggle,
+.piri-sidebar.piri-platform-claude:not(.piri-claude-light):not(.piri-claude-dark) .piri-toggle {
+    background: #2b2928;
+    border: 1px solid rgba(193, 95, 60, 0.3);
+    box-shadow: none !important;
+}
+
+.piri-sidebar.piri-platform-claude.piri-claude-dark .piri-toggle:hover,
+.piri-sidebar.piri-platform-claude:not(.piri-claude-light):not(.piri-claude-dark) .piri-toggle:hover {
+    background: #3a3836;
+    border-color: #C15F3C;
+    box-shadow: none !important;
+}
+
+.piri-sidebar.piri-platform-claude .piri-toggle svg path,
+.piri-sidebar.piri-platform-claude .piri-toggle svg rect {
+    fill: #C15F3C !important;
+}
+
+.piri-sidebar.piri-platform-claude.piri-claude-light .piri-search-input {
+    border-radius: 8px;
+    background: #FFFFFF;
+    border: 1px solid #B1ADA1;
+    color: #2b2928;
+}
+
+.piri-sidebar.piri-platform-claude.piri-claude-light .piri-search-input:focus {
+    border-color: #C15F3C;
+    box-shadow: none;
+    outline: none;
+}
+
+.piri-sidebar.piri-platform-claude.piri-claude-dark .piri-search-input,
+.piri-sidebar.piri-platform-claude:not(.piri-claude-light):not(.piri-claude-dark) .piri-search-input {
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: #f5f4f3;
+}
+
+.piri-sidebar.piri-platform-claude.piri-claude-dark .piri-search-input:focus,
+.piri-sidebar.piri-platform-claude:not(.piri-claude-light):not(.piri-claude-dark) .piri-search-input:focus {
+    border-color: #C15F3C;
+    box-shadow: none;
+    outline: none;
+}
+
+.piri-sidebar.piri-platform-claude .piri-btn:hover,
+.piri-sidebar.piri-platform-claude .piri-footer-btn:hover {
+    border-color: #C15F3C;
+    background: rgba(193, 95, 60, 0.1);
+}
+
+.piri-sidebar.piri-platform-claude.piri-claude-light .piri-item {
+    border-radius: 8px;
+    margin: 2px 8px;
+    padding: 10px 12px;
+    color: #2b2928;
+    box-shadow: none !important;
+}
+
+.piri-sidebar.piri-platform-claude.piri-claude-dark .piri-item,
+.piri-sidebar.piri-platform-claude:not(.piri-claude-light):not(.piri-claude-dark) .piri-item {
+    border-radius: 8px;
+    margin: 2px 8px;
+    padding: 10px 12px;
+    color: #f5f4f3;
+    box-shadow: none !important;
+}
+
+.piri-sidebar.piri-platform-claude .piri-filter-btn {
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.piri-sidebar.piri-platform-claude.piri-claude-light .piri-header {
+    border-bottom: 1px solid #B1ADA1;
+    box-shadow: none !important;
+    background: #F4F3EE !important;
+}
+
+.piri-sidebar.piri-platform-claude.piri-claude-dark .piri-header,
+.piri-sidebar.piri-platform-claude:not(.piri-claude-light):not(.piri-claude-dark) .piri-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: none !important;
+    background: rgba(0, 0, 0, 0.25) !important;
+}
+
+.piri-sidebar.piri-platform-claude.piri-claude-light .piri-footer {
+    box-shadow: none !important;
+    border-top: 1px solid #B1ADA1;
+    background: #F4F3EE !important;
+}
+
+.piri-sidebar.piri-platform-claude.piri-claude-dark .piri-footer,
+.piri-sidebar.piri-platform-claude:not(.piri-claude-light):not(.piri-claude-dark) .piri-footer {
+    box-shadow: none !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(0, 0, 0, 0.25) !important;
+}
+
+.piri-sidebar.piri-platform-claude .piri-search-wrapper {
+    box-shadow: none !important;
+}
+
+.piri-sidebar.piri-platform-claude.piri-claude-light .piri-btn,
+.piri-sidebar.piri-platform-claude.piri-claude-light .piri-footer-btn,
+.piri-sidebar.piri-platform-claude.piri-claude-light .piri-filter-btn {
+    box-shadow: none !important;
+    background: #FFFFFF;
+    border: 1px solid #B1ADA1;
+    color: #2b2928;
+}
+
+.piri-sidebar.piri-platform-claude.piri-claude-dark .piri-btn,
+.piri-sidebar.piri-platform-claude.piri-claude-dark .piri-footer-btn,
+.piri-sidebar.piri-platform-claude.piri-claude-dark .piri-filter-btn,
+.piri-sidebar.piri-platform-claude:not(.piri-claude-light):not(.piri-claude-dark) .piri-btn,
+.piri-sidebar.piri-platform-claude:not(.piri-claude-light):not(.piri-claude-dark) .piri-footer-btn,
+.piri-sidebar.piri-platform-claude:not(.piri-claude-light):not(.piri-claude-dark) .piri-filter-btn {
+    box-shadow: none !important;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: #f5f4f3;
+}
+
+.piri-sidebar.piri-platform-claude.piri-claude-light .piri-item:hover {
+    background: rgba(193, 95, 60, 0.12);
+    color: #2b2928;
+}
+
+.piri-sidebar.piri-platform-claude.piri-claude-dark .piri-item:hover,
+.piri-sidebar.piri-platform-claude:not(.piri-claude-light):not(.piri-claude-dark) .piri-item:hover {
+    background: rgba(193, 95, 60, 0.12);
+    color: #f5f4f3;
+}
+
+.piri-sidebar.piri-platform-claude .piri-role-user {
+    background: #C15F3C;
+    color: #FFFFFF;
+}
+
+.piri-sidebar.piri-platform-claude .piri-role-assistant {
+    background: #C15F3C;
+    color: #FFFFFF;
+}
+
+/* ========================================
+   Platform: Gemini Theme
+   Flat design, no shadows - matches Gemini UI
+   ======================================== */
+.piri-sidebar.piri-platform-gemini {
+    --piri-primary: #8ab4f8;
+    --piri-secondary: #4285f4;
+    --piri-bg: #1e1f20;
+    --piri-bg-light: rgba(255, 255, 255, 0.04);
+    --piri-bg-hover: rgba(255, 255, 255, 0.08);
+    --piri-border: rgba(255, 255, 255, 0.08);
+    --piri-text: #e3e3e3;
+    --piri-text-muted: #9aa0a6;
+    --piri-accent: #8ab4f8;
+    --piri-header-bg: #1e1f20;
+    font-family: 'Google Sans', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+    border-radius: 0;
+    border: none;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: none;
+}
+
+.piri-sidebar.piri-platform-gemini .piri-logo-text {
+    background: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: #e3e3e3;
+    background-clip: unset;
+    font-weight: 400;
+    font-size: 16px;
+    color: #e3e3e3;
+}
+
+.piri-sidebar.piri-platform-gemini .piri-logo {
+    gap: 10px;
+}
+
+.piri-sidebar.piri-platform-gemini .piri-logo-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.piri-sidebar.piri-platform-gemini .piri-logo-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.piri-sidebar.piri-platform-gemini .piri-platform-badge {
+    display: none;
+}
+
+.piri-sidebar.piri-platform-gemini .piri-header {
+    background: #1e1f20;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.piri-sidebar.piri-platform-gemini .piri-filter-btn {
+    border-radius: 8px;
+    font-weight: 400;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #9aa0a6;
+    font-size: 13px;
+    padding: 6px 12px;
+}
+
+.piri-sidebar.piri-platform-gemini .piri-filter-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.15);
+    color: #e3e3e3;
+}
+
+.piri-sidebar.piri-platform-gemini .piri-filter-btn.piri-active {
+    background: rgba(138, 180, 248, 0.1);
+    border-color: #8ab4f8;
+    color: #8ab4f8;
+}
+
+.piri-sidebar.piri-platform-gemini .piri-item,
+.piri-sidebar.piri-platform-gemini .piri-outline-item {
+    border-radius: 8px;
+    margin: 1px 0;
+    background: transparent;
+    border: none;
+    border-left: none;
+}
+
+.piri-sidebar.piri-platform-gemini .piri-item:hover,
+.piri-sidebar.piri-platform-gemini .piri-outline-item:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.piri-sidebar.piri-platform-gemini .piri-item.piri-active,
+.piri-sidebar.piri-platform-gemini .piri-outline-item.piri-active {
+    background: transparent;
+}
+
+.piri-sidebar.piri-platform-gemini .piri-item.piri-highlighted,
+.piri-sidebar.piri-platform-gemini .piri-outline-item.piri-highlighted {
+    background: transparent;
+}
+
+/* Clean Gemini outline icons */
+.piri-sidebar.piri-platform-gemini .piri-outline-icon {
+    background: rgba(138, 180, 248, 0.12);
+    border: none;
+    color: #8ab4f8;
+    font-size: 9px;
+    font-weight: 600;
+    width: 22px;
+    height: 18px;
+    border-radius: 4px;
+}
+
+.piri-sidebar.piri-platform-gemini .piri-outline-text {
+    color: #e3e3e3;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+/* Gemini tree structure - cleaner lines */
+.piri-sidebar.piri-platform-gemini .piri-outline-item::before,
+.piri-sidebar.piri-platform-gemini .piri-outline-item::after {
+    display: none;
+}
+
+.piri-sidebar.piri-platform-gemini .piri-outline-children {
+    margin-left: 0;
+    padding-left: 16px;
+    border-left: 1px solid rgba(255, 255, 255, 0.06);
+    margin-top: 2px;
+}
+
+.piri-sidebar.piri-platform-gemini .piri-outline-children .piri-outline-item::before {
+    display: none;
+}
+
+.piri-sidebar.piri-platform-gemini .piri-outline-content {
+    padding: 6px 12px;
+    gap: 10px;
+}
+
+.piri-sidebar.piri-platform-gemini .piri-outline-h1 .piri-outline-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: #e3e3e3;
+}
+
+.piri-sidebar.piri-platform-gemini .piri-outline-h3 .piri-outline-text {
+    font-size: 13px;
+    font-weight: 400;
+    color: #9aa0a6;
+}
+
+.piri-sidebar.piri-platform-gemini .piri-chevron {
+    color: #5f6368;
+}
+
+.piri-sidebar.piri-platform-gemini .piri-search-wrapper {
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.piri-sidebar.piri-platform-gemini .piri-search-input {
+    border-radius: 8px;
+    padding-left: 40px;
+    background: transparent;
+    border: none;
+    color: #e3e3e3;
+    font-size: 14px;
+}
+
+.piri-sidebar.piri-platform-gemini .piri-search-input::placeholder {
+    color: #9aa0a6;
+}
+
+.piri-sidebar.piri-platform-gemini .piri-search-input:focus {
+    border-color: transparent;
+    box-shadow: none;
+}
+
+.piri-sidebar.piri-platform-gemini .piri-search-wrapper:focus-within {
+    border-color: rgba(138, 180, 248, 0.5);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.piri-sidebar.piri-platform-gemini .piri-btn {
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.piri-sidebar.piri-platform-gemini .piri-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.piri-sidebar.piri-platform-gemini .piri-footer-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: transparent;
+}
+
+.piri-sidebar.piri-platform-gemini .piri-role-user {
+    background: #8ab4f8;
+    color: #1e1f20;
+}
+
+.piri-sidebar.piri-platform-gemini .piri-role-assistant {
+    background: linear-gradient(135deg, #4285f4, #9b72cb);
+    color: #fff;
+}
+
+.piri-sidebar.piri-platform-gemini .piri-footer {
+    background: #1e1f20;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.piri-sidebar.piri-platform-gemini .piri-footer-btn {
+    border-radius: 100px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Gemini scroll meter */
+#piri-scroll-meter.piri-platform-gemini {
+    color: #9aa0a6;
+}
+
+#piri-scroll-meter.piri-platform-gemini .piri-scroll-btn {
+    color: #9aa0a6;
+    opacity: 0.7;
+}
+
+#piri-scroll-meter.piri-platform-gemini .piri-scroll-btn:hover {
+    opacity: 1;
+    background: rgba(138, 180, 248, 0.1);
+    color: #8ab4f8;
+}
+
+#piri-scroll-meter.piri-platform-gemini .piri-scroll-dot-wrapper:hover {
+    background: rgba(138, 180, 248, 0.1);
+}
+
+#piri-scroll-meter.piri-platform-gemini .piri-scroll-dot {
+    background: #9aa0a6;
+    opacity: 0.6;
+}
+
+#piri-scroll-meter.piri-platform-gemini .piri-scroll-dot-wrapper:hover .piri-scroll-dot {
+    background: #8ab4f8;
+    opacity: 1;
+    transform: scale(1.5);
+}
+
+#piri-scroll-meter.piri-platform-gemini .piri-scroll-dot.piri-active {
+    background: #8ab4f8;
+    opacity: 1;
+}
+
+#piri-scroll-meter.piri-platform-gemini .piri-scroll-tooltip {
+    background: #303134;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #e3e3e3;
+    font-family: 'Google Sans', 'Roboto', sans-serif;
+    font-size: 13px;
+    border-radius: 8px;
+    box-shadow: none;
+}
+
+#piri-scroll-meter.piri-platform-gemini .piri-scroll-tooltip::after {
+    border-left-color: #303134;
+}
+
+/* Gemini flat UI overrides */
+.piri-sidebar.piri-platform-gemini .piri-header {
+    box-shadow: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.piri-sidebar.piri-platform-gemini .piri-footer {
+    box-shadow: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.piri-sidebar.piri-platform-gemini .piri-search-wrapper {
+    box-shadow: none;
+}
+
+.piri-sidebar.piri-platform-gemini .piri-search-input:focus {
+    box-shadow: none;
+}
+
+.piri-sidebar.piri-platform-gemini .piri-item {
+    box-shadow: none;
+}
+
+.piri-sidebar.piri-platform-gemini .piri-btn,
+.piri-sidebar.piri-platform-gemini .piri-footer-btn,
+.piri-sidebar.piri-platform-gemini .piri-filter-btn {
+    box-shadow: none;
+}
+
+/* Gemini toggle button - flat, no shadow */
+.piri-toggle.piri-platform-gemini {
+    background: #303134 !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: none !important;
+}
+
+.piri-toggle.piri-platform-gemini:hover {
+    background: #3c4043 !important;
+    box-shadow: none !important;
+}
+
+.piri-toggle.piri-platform-gemini svg path,
+.piri-toggle.piri-platform-gemini svg rect {
+    fill: #8ab4f8 !important;
+}
+
+.piri-toggle.piri-platform-gemini svg path[stroke] {
+    stroke: #8ab4f8 !important;
+}
+
+/* ========================================
+   Light Theme Overrides (all platforms)
+   ======================================== */
+.piri-sidebar.piri-theme-light {
+    --piri-bg: rgba(255, 255, 255, 0.98);
+    --piri-bg-light: rgba(0, 0, 0, 0.03);
+    --piri-bg-hover: rgba(0, 0, 0, 0.06);
+    --piri-border: rgba(0, 0, 0, 0.1);
+    --piri-text: #1a1a2e;
+    --piri-text-muted: rgba(0, 0, 0, 0.5);
+    --piri-header-bg: rgba(0, 0, 0, 0.03);
+}
+
+/* ========================================
+   Main Sidebar Container
+   ======================================== */
+.piri-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: var(--piri-width);
+    height: 100vh;
+    background: var(--piri-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-left: 1px solid var(--piri-border);
+    box-shadow: var(--piri-shadow);
+    z-index: 999999;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--piri-text);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s ease;
+    overflow: hidden;
+}
+
+/* ChatGPT-specific: Match native sidebar appearance (no shadows, no blur) */
+.piri-sidebar.piri-platform-chatgpt,
+.piri-sidebar.piri-platform-chatgpt.piri-chatgpt-dark {
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* Position variants */
+.piri-sidebar.piri-position-left {
+    right: auto;
+    left: 0;
+    border-left: none;
+    border-right: 1px solid var(--piri-border);
+}
+
+.piri-sidebar.piri-position-floating {
+    top: 20px;
+    right: 20px;
+    height: calc(100vh - 40px);
+    border-radius: var(--piri-radius);
+    border: 1px solid var(--piri-border);
+}
+
+.piri-sidebar.piri-position-between {
+    right: auto;
+    left: 260px;
+    border-left: 1px solid var(--piri-border);
+    border-right: 1px solid var(--piri-border);
+}
+
+.piri-sidebar.piri-position-between.piri-hidden {
+    transform: translateX(-100%);
+    display: none !important;
+}
+
+/* Hidden state */
+.piri-sidebar.piri-hidden {
+    transform: translateX(100%);
+    display: none !important;
+}
+
+.piri-sidebar.piri-position-left.piri-hidden {
+    transform: translateX(-100%);
+    display: none !important;
+}
+
+/* ========================================
+   Header
+   ======================================== */
+.piri-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--piri-border);
+    background: var(--piri-header-bg);
+}
+
+.piri-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.piri-logo-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--piri-bg-light);
+    border: 1px solid var(--piri-border);
+}
+
+.piri-logo-icon img {
+    width: 20px;
+    height: 20px;
+}
+
+.piri-logo svg {
+    width: 24px;
+    height: 24px;
+}
+
+.piri-logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-family: 'Söhne', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.piri-sidebar.piri-platform-chatgpt .piri-logo-text {
+    background: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+    background-clip: unset;
+    font-family: 'Söhne', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+}
+
+.piri-platform-badge {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 12px;
+    background: rgba(102, 126, 234, 0.15);
+    color: var(--piri-primary);
+    border: 1px solid rgba(102, 126, 234, 0.3);
+}
+
+.piri-header-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.piri-btn {
+    background: var(--piri-bg-light);
+    border: 1px solid var(--piri-border);
+    color: var(--piri-text);
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.piri-btn:hover {
+    background: var(--piri-bg-hover);
+    border-color: var(--piri-primary);
+}
+
+.piri-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* ========================================
+   Search
+   ======================================== */
+.piri-search {
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--piri-border);
+}
+
+.piri-search-input {
+    width: 100%;
+    background: var(--piri-bg-light);
+    border: 1px solid var(--piri-border);
+    color: var(--piri-text);
+    padding: 10px 14px;
+    padding-left: 38px;
+    border-radius: 10px;
+    font-size: 13px;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.piri-search-input:focus {
+    border-color: var(--piri-primary);
+    box-shadow: none;
+    outline: none;
+}
+
+.piri-search-input::placeholder {
+    color: var(--piri-text-muted);
+}
+
+.piri-search-wrapper {
+    position: relative;
+}
+
+.piri-search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    color: var(--piri-text-muted);
+    pointer-events: none;
+}
+
+/* ========================================
+   Filters
+   ======================================== */
+.piri-filters {
+    display: flex;
+    gap: 8px;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--piri-border);
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.piri-filters::-webkit-scrollbar {
+    display: none;
+}
+
+.piri-filter-btn {
+    flex-shrink: 0;
+    background: var(--piri-bg-light);
+    border: 1px solid var(--piri-border);
+    color: var(--piri-text-muted);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.piri-filter-btn:hover {
+    background: var(--piri-bg-hover);
+    color: var(--piri-text);
+}
+
+.piri-filter-btn.piri-active {
+    background: rgba(102, 126, 234, 0.2);
+    border-color: var(--piri-primary);
+    color: var(--piri-primary);
+}
+
+/* ChatGPT theme already has filter button active styles defined above */
+
+/* ========================================
+   Content
+   ======================================== */
+.piri-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px 0;
+}
+
+.piri-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.piri-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.piri-content::-webkit-scrollbar-thumb {
+    background: var(--piri-border);
+    border-radius: 3px;
+}
+
+.piri-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* ========================================
+   Scroll Meter (Independent, Fixed to Viewport)
+   ChatGPT-style design with improved UX
+   ======================================== */
+#piri-scroll-meter {
+    position: fixed;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28px;
+    max-height: 45vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 6px 2px;
+    pointer-events: none;
+    z-index: 999998;
+    transition: all 0.2s ease;
+    background: transparent;
+    gap: 4px;
+    overflow: hidden;
+}
+
+#piri-scroll-meter[style*="display: none"] {
+    display: none !important;
+}
+
+.piri-scroll-btn {
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    color: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: all;
+    transition: all 0.15s ease;
+    padding: 0;
+    flex-shrink: 0;
+    margin: 0;
+    opacity: 0.6;
+    z-index: 10;
+    position: relative;
+}
+
+.piri-scroll-btn:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.piri-scroll-btn:active {
+    opacity: 0.9;
+    transform: scale(0.92);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.piri-scroll-btn svg {
+    width: 14px;
+    height: 14px;
+    stroke-width: 2.5;
+}
+
+.piri-scroll-track {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    min-height: 0;
+    margin: 4px 0;
+    overflow-y: auto;
+    overflow-x: visible;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.piri-scroll-track::-webkit-scrollbar {
+    display: none;
+}
+
+.piri-scroll-thumb {
+    display: none !important;
+}
+
+.piri-scroll-indicators {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0;
+    padding: 0;
+    pointer-events: all;
+    width: 100%;
+    z-index: 2;
+    min-height: 0;
+}
+
+/* Wrapper adapts based on dot count via CSS vars set by JS */
+.piri-scroll-dot-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.12s ease;
+    width: 24px;
+    min-height: var(--dot-height, 8px);
+    height: var(--dot-height, 10px);
+    padding: 1px 4px;
+    cursor: pointer;
+    pointer-events: auto;
+    z-index: 2;
+    border-radius: 3px;
+    flex-shrink: 1;
+    overflow: visible;
+}
+
+.piri-scroll-dot-wrapper:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.piri-scroll-dot-wrapper:active {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* The dot itself - size adapts */
+.piri-scroll-dot {
+    width: var(--dot-size, 5px);
+    height: var(--dot-size, 5px);
+    border-radius: 50%;
+    background: currentColor;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    opacity: 0.5;
+    flex-shrink: 0;
+    position: relative;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.piri-scroll-dot-wrapper:hover .piri-scroll-dot {
+    opacity: 1;
+    transform: scale(1.5);
+    background: #ffffff;
+}
+
+.piri-scroll-dot.piri-active {
+    opacity: 1;
+    background: #ffffff;
+    width: calc(var(--dot-size, 5px) + 2px);
+    height: calc(var(--dot-size, 5px) + 2px);
+}
+
+.piri-scroll-dot-wrapper:hover .piri-scroll-dot.piri-active {
+    transform: scale(1.3);
+}
+
+/* Force white for dark mode - override all base styles */
+#piri-scroll-meter.piri-platform-chatgpt.piri-chatgpt-dark * {
+    color: #ffffff !important;
+}
+
+#piri-scroll-meter.piri-platform-chatgpt.piri-chatgpt-dark .piri-scroll-dot {
+    background: rgba(255, 255, 255, 0.5) !important;
+}
+
+#piri-scroll-meter.piri-platform-chatgpt.piri-chatgpt-dark .piri-scroll-dot-wrapper:hover .piri-scroll-dot,
+#piri-scroll-meter.piri-platform-chatgpt.piri-chatgpt-dark .piri-scroll-dot.piri-active {
+    background: #ffffff !important;
+}
+
+/* Global tooltip - appended to body to avoid clipping */
+.piri-global-tooltip {
+    position: fixed !important;
+    background: #2f2f2f;
+    color: #ececf1;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 400;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.15s ease, visibility 0.15s ease;
+    z-index: 99999999 !important;
+    max-width: 280px;
+    min-width: 120px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    line-height: 1.5;
+    word-wrap: break-word;
+    white-space: normal;
+    text-align: left;
+    font-family: 'Söhne', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    letter-spacing: -0.01em;
+    transform: translateY(-50%);
+}
+
+/* Arrow pointing right toward the dot */
+.piri-global-tooltip::after {
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid #2f2f2f;
+}
+
+.piri-scroll-dot:focus {
+    outline: none;
+}
+
+.piri-scroll-dot-wrapper:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* ========================================
+   Empty State
+   ======================================== */
+.piri-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--piri-text-muted);
+}
+
+.piri-empty svg {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 16px;
+    opacity: 0.5;
+}
+
+.piri-empty-icon {
+    margin-bottom: 20px;
+    opacity: 0.15;
+    color: var(--piri-text-muted);
+}
+
+.piri-empty-icon svg {
+    width: 80px;
+    height: auto;
+    opacity: 1;
+}
+
+.piri-empty-title {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--piri-text);
+}
+
+.piri-empty-subtitle {
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+/* ========================================
+   Section Group
+   ======================================== */
+.piri-section-group {
+    margin-bottom: 8px;
+}
+
+.piri-section-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--piri-text-muted);
+}
+
+.piri-role-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.piri-role-user {
+    background: var(--piri-primary);
+}
+
+.piri-role-assistant {
+    background: var(--piri-primary);
+}
+
+/* ========================================
+   TOC Item (Legacy - for backward compatibility)
+   ======================================== */
+.piri-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-left: 2px solid transparent;
+}
+
+.piri-item:hover {
+    background: var(--piri-bg-hover);
+}
+
+.piri-item.piri-active {
+    background: transparent;
+    border-left-color: transparent;
+}
+
+.piri-item.piri-highlighted {
+    background: transparent;
+    animation: none;
+}
+
+/* ChatGPT theme overrides for active/highlighted states */
+.piri-sidebar.piri-platform-chatgpt .piri-item.piri-active {
+    background: transparent;
+    border-left-color: transparent;
+}
+
+.piri-sidebar.piri-platform-chatgpt .piri-item.piri-highlighted {
+    background: transparent;
+    animation: none;
+}
+
+.piri-sidebar.piri-platform-chatgpt.piri-chatgpt-dark .piri-item.piri-active {
+    background: transparent;
+    border-left-color: transparent;
+}
+
+.piri-sidebar.piri-platform-chatgpt.piri-chatgpt-dark .piri-item.piri-highlighted {
+    background: transparent;
+    animation: none;
+}
+
+/* ========================================
+   Outline Item (Hierarchical Structure)
+   ======================================== */
+.piri-outline-item {
+    cursor: pointer;
+    transition: background 0.15s ease;
+    position: relative;
+    border-radius: 6px;
+}
+
+.piri-outline-item:hover {
+    background: var(--piri-bg-hover);
+}
+
+.piri-outline-item.piri-active {
+    background: transparent;
+}
+
+/* ChatGPT theme overrides for outline active states */
+.piri-sidebar.piri-platform-chatgpt .piri-outline-item.piri-active {
+    background: transparent;
+    border-left-color: transparent;
+}
+
+.piri-sidebar.piri-platform-chatgpt.piri-chatgpt-dark .piri-outline-item.piri-active {
+    background: transparent;
+    border-left-color: transparent;
+}
+
+.piri-outline-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    min-height: 36px;
+}
+
+.piri-outline-content[data-toggle] {
+    cursor: pointer;
+}
+
+.piri-chevron-wrapper {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.15s ease;
+}
+
+.piri-outline-item:hover .piri-chevron-wrapper {
+    opacity: 0.8;
+}
+
+.piri-chevron {
+    flex-shrink: 0;
+    width: 12px;
+    height: 12px;
+    color: var(--piri-text-muted);
+    transition: transform 0.2s ease;
+}
+
+.piri-outline-item.piri-expanded .piri-chevron {
+    transform: rotate(90deg);
+}
+
+.piri-outline-icon {
+    flex-shrink: 0;
+    width: 26px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    background: var(--piri-bg-light);
+    color: var(--piri-text-muted);
+}
+
+.piri-outline-text {
+    flex: 1;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--piri-text);
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.piri-outline-children {
+    display: block;
+    position: relative;
+    margin-left: 20px;
+    padding-left: 12px;
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.piri-outline-item:not(.piri-expanded) .piri-outline-children {
+    display: none;
+}
+
+.piri-outline-h1 .piri-outline-text {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.piri-outline-h2 .piri-outline-text {
+    font-weight: 400;
+    font-size: 13px;
+}
+
+.piri-outline-h3 .piri-outline-text {
+    font-weight: 400;
+    font-size: 13px;
+    color: var(--piri-text-muted);
+}
+
+@keyframes piri-highlight-pulse {
+    0% {
+        background: rgba(102, 126, 234, 0.4);
+    }
+
+    100% {
+        background: rgba(102, 126, 234, 0.2);
+    }
+}
+
+/* ChatGPT theme - disable pulse animation */
+.piri-sidebar.piri-platform-chatgpt .piri-item.piri-highlighted,
+.piri-sidebar.piri-platform-chatgpt.piri-chatgpt-dark .piri-item.piri-highlighted {
+    animation: none !important;
+}
+
+.piri-item-icon {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    background: var(--piri-bg-light);
+    color: var(--piri-text-muted);
+}
+
+.piri-item-icon.piri-h1 {
+    color: var(--piri-text);
+    background: var(--piri-bg-light);
+}
+
+.piri-item-icon.piri-h2 {
+    color: var(--piri-text);
+    background: var(--piri-bg-light);
+}
+
+.piri-item-icon.piri-h3 {
+    color: var(--piri-text);
+    background: var(--piri-bg-light);
+}
+
+.piri-item-icon.piri-code {
+    color: var(--piri-text);
+    background: var(--piri-bg-light);
+}
+
+.piri-item-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.piri-item-text {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.piri-item-meta {
+    font-size: 11px;
+    color: var(--piri-text-muted);
+    margin-top: 4px;
+}
+
+/* ========================================
+   Footer
+   ======================================== */
+.piri-footer {
+    padding: 12px 20px;
+    border-top: 1px solid var(--piri-border);
+    display: flex;
+    gap: 8px;
+}
+
+.piri-footer-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: var(--piri-bg-light);
+    border: 1px solid var(--piri-border);
+    color: var(--piri-text);
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.piri-footer-btn:hover {
+    background: var(--piri-bg-hover);
+    border-color: var(--piri-primary);
+}
+
+.piri-footer-btn svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* ========================================
+   Toggle Button
+   ======================================== */
+.piri-toggle {
+    position: fixed !important;
+    right: 20px !important;
+    bottom: 20px !important;
+    width: 50px;
+    height: 50px;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    cursor: grab;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 999999 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 0.2s ease;
+    user-select: none;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+.piri-toggle:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.piri-toggle:active {
+    cursor: grabbing;
+}
+
+.piri-toggle.piri-dragging {
+    cursor: grabbing;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.piri-toggle svg {
+    width: 24px;
+    height: 24px;
+    pointer-events: none;
+}
+
+.piri-toggle svg path {
+    fill: #1a1a1a;
+}
+
+.piri-toggle.piri-hidden {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* Ensure toggle is visible when not hidden */
+.piri-toggle:not(.piri-hidden) {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+/* ========================================
+   Resize Handle
+   ======================================== */
+.piri-resize-handle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 4px;
+    height: 100%;
+    cursor: ew-resize;
+    background: transparent;
+    transition: background 0.2s ease;
+}
+
+.piri-resize-handle:hover,
+.piri-resize-handle.piri-resizing {
+    background: var(--piri-primary);
+}
+
+/* ========================================
+   Highlight Effect
+   ======================================== */
+.piri-target-highlight {
+    border-radius: 8px !important;
+    background: rgba(138, 180, 248, 0.15) !important;
+    outline: 2px solid rgba(138, 180, 248, 0.4) !important;
+    outline-offset: 2px !important;
+    animation: piri-fade 2.5s ease-out forwards;
+}
+
+@keyframes piri-fade {
+    0% { 
+        background: rgba(138, 180, 248, 0.2);
+        outline-color: rgba(138, 180, 248, 0.5);
+    }
+    70% {
+        background: rgba(138, 180, 248, 0.08);
+        outline-color: rgba(138, 180, 248, 0.2);
+    }
+    100% {
+        background: transparent;
+        outline-color: transparent;
+    }
+}
+
+/* Light mode */
+html:not(.dark) .piri-target-highlight,
+[data-theme="light"] .piri-target-highlight {
+    background: rgba(66, 133, 244, 0.1) !important;
+    outline: 2px solid rgba(66, 133, 244, 0.3) !important;
+    animation: piri-fade-light 2.5s ease-out forwards;
+}
+
+@keyframes piri-fade-light {
+    0% { 
+        background: rgba(66, 133, 244, 0.15);
+        outline-color: rgba(66, 133, 244, 0.4);
+    }
+    70% {
+        background: rgba(66, 133, 244, 0.05);
+        outline-color: rgba(66, 133, 244, 0.15);
+    }
+    100% { 
+        background: transparent;
+        outline-color: transparent;
+    }
+}
+
+
+/* ========================================
+   Responsive
+   ======================================== */
+@media (max-width: 768px) {
+    .piri-sidebar {
+        width: 100% !important;
+        max-width: 100vw;
+    }
+
+    .piri-sidebar.piri-position-floating {
+        top: 0;
+        right: 0;
+        height: 100vh;
+        border-radius: 0;
+    }
+
+    #piri-scroll-meter {
+        width: 20px;
+        right: 8px;
+        padding: 6px 3px;
+        max-height: 50vh;
+    }
+
+    #piri-scroll-meter .piri-scroll-btn {
+        width: 18px;
+        height: 18px;
+    }
+
+    #piri-scroll-meter .piri-scroll-btn svg {
+        width: 10px;
+        height: 10px;
+    }
+
+    #piri-scroll-meter .piri-scroll-dot {
+        width: 4px;
+        height: 4px;
+    }
+
+    #piri-scroll-meter .piri-scroll-dot:hover {
+        transform: scale(2.2);
+        width: 6px;
+        height: 6px;
+    }
+
+    #piri-scroll-meter .piri-scroll-dot.piri-active {
+        width: 5px;
+        height: 5px;
+    }
+
+    #piri-scroll-meter .piri-scroll-dot.piri-active:hover {
+        transform: scale(2.4);
+        width: 7px;
+        height: 7px;
+    }
+
+    #piri-scroll-meter .piri-scroll-tooltip {
+        font-size: 10px;
+        padding: 5px 8px;
+        max-width: 150px;
+        right: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    #piri-scroll-meter {
+        width: 18px;
+        right: 6px;
+        padding: 5px 2px;
+        max-height: 45vh;
+    }
+
+    #piri-scroll-meter .piri-scroll-btn {
+        width: 16px;
+        height: 16px;
+    }
+
+    #piri-scroll-meter .piri-scroll-btn svg {
+        width: 9px;
+        height: 9px;
+    }
+
+    #piri-scroll-meter .piri-scroll-dot {
+        width: 4px;
+        height: 4px;
+    }
+
+    #piri-scroll-meter .piri-scroll-dot:hover {
+        transform: scale(2.2);
+        width: 6px;
+        height: 6px;
+    }
+
+    #piri-scroll-meter .piri-scroll-dot.piri-active {
+        width: 5px;
+        height: 5px;
+    }
+
+    #piri-scroll-meter .piri-scroll-dot.piri-active:hover {
+        transform: scale(2.4);
+        width: 7px;
+        height: 7px;
+    }
+
+    #piri-scroll-meter .piri-scroll-tooltip {
+        font-size: 9px;
+        padding: 4px 7px;
+        max-width: 120px;
+        right: 26px;
+    }
+}
+
+@media (min-width: 1920px) {
+    #piri-scroll-meter {
+        width: 28px;
+        right: 16px;
+        padding: 10px 5px;
+        max-height: 65vh;
+    }
+
+    #piri-scroll-meter .piri-scroll-btn {
+        width: 24px;
+        height: 24px;
+    }
+
+    #piri-scroll-meter .piri-scroll-btn svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    #piri-scroll-meter .piri-scroll-dot {
+        width: 6px;
+        height: 6px;
+    }
+
+    #piri-scroll-meter .piri-scroll-dot:hover {
+        transform: scale(2.2);
+        width: 8px;
+        height: 8px;
+    }
+
+    #piri-scroll-meter .piri-scroll-dot.piri-active {
+        width: 7px;
+        height: 7px;
+    }
+
+    #piri-scroll-meter .piri-scroll-dot.piri-active:hover {
+        transform: scale(2.4);
+        width: 9px;
+        height: 9px;
+    }
+}
+
+/* ========================================
+   Animation
+   ======================================== */
+@keyframes piri-slide-in {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.piri-item {
+    animation: piri-slide-in 0.3s ease forwards;
+}

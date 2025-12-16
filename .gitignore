@@ -17,6 +17,9 @@
 /.next/
 /out/
 
+# GitHub Pages
+/.github/workflows/deploy.yml.bak
+
 # production
 /build
 
@@ -36,6 +39,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# netlify
+.netlify
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+*.md

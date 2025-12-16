@@ -1,0 +1,814 @@
+/* Piri Popup Styles - Premium Glassmorphic Design */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #1a1a1a;
+  min-width: 320px;
+  min-height: 400px;
+  color: #e4e4e7;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.popup-container {
+  padding: 20px;
+}
+
+/* Header */
+.popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-icon {
+  width: 28px;
+  height: 28px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.logo-text {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.version {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.08);
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+/* Status indicator */
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 8px;
+  font-size: 12px;
+  color: #10b981;
+}
+
+.status-indicator.inactive {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Content */
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+/* Toggle Row */
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+}
+
+.toggle-row:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.toggle-label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Toggle Switch */
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 26px;
+}
+
+.toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  border-radius: 26px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background: white;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+}
+
+.toggle input:checked+.slider {
+  background: #ffffff;
+}
+
+.toggle input:checked+.slider:before {
+  transform: translateX(22px);
+  background: #1a1a1a;
+}
+
+/* Select Row */
+.select-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+}
+
+.select-row:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.select-label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+select {
+  background: rgba(255, 255, 255, 0.1);
+  color: #e4e4e7;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+  min-width: 130px;
+}
+
+select:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+select:focus {
+  border-color: #ffffff;
+}
+
+select option {
+  background: #1a1a1a;
+  color: #e4e4e7;
+}
+
+body.piri-platform-chatgpt select option {
+  background: #ffffff;
+  color: #353740;
+}
+
+body.piri-platform-claude select option {
+  background: #191919;
+  color: #E5E4DF;
+}
+
+body.piri-platform-gemini select option {
+  background: #1a1a1a;
+  color: #e8eaed;
+}
+
+/* Action button */
+.action-btn {
+  width: 100%;
+  padding: 14px;
+  margin-top: 8px;
+  background: #ffffff;
+  border: none;
+  border-radius: 8px;
+  color: #1a1a1a;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.action-btn:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.action-btn:active {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* Footer */
+.popup-footer {
+  text-align: center;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.popup-footer p {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 12px;
+}
+
+.supported-platforms {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.platform-badge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.2s ease;
+}
+
+.platform-badge:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Toast notification */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: rgba(26, 26, 26, 0.95);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.popup-container {
+  animation: fadeIn 0.3s ease;
+}
+
+.toggle-row,
+.select-row {
+  animation: fadeIn 0.3s ease backwards;
+}
+
+.toggle-row:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+.toggle-row:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.select-row:nth-child(3) {
+  animation-delay: 0.15s;
+}
+
+.select-row:nth-child(4) {
+  animation-delay: 0.2s;
+}
+
+/* ========================================
+   Platform: ChatGPT Theme (Light Mode - Default)
+   ======================================== */
+body.piri-platform-chatgpt {
+  background: #f7f7f8;
+  color: #353740;
+  font-family: 'Söhne', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+/* ========================================
+   Platform: ChatGPT Theme (Dark Mode)
+   ======================================== */
+body.piri-platform-chatgpt.piri-chatgpt-dark {
+  background: #212121;
+  color: #ececf1;
+}
+
+body.piri-platform-chatgpt.piri-chatgpt-dark .popup-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.piri-platform-chatgpt.piri-chatgpt-dark .logo-text {
+  color: #ececf1;
+  -webkit-text-fill-color: #ececf1;
+}
+
+body.piri-platform-chatgpt.piri-chatgpt-dark .status-indicator {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ececf1;
+}
+
+body.piri-platform-chatgpt.piri-chatgpt-dark .status-indicator.inactive {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+body.piri-platform-chatgpt.piri-chatgpt-dark .toggle-row,
+body.piri-platform-chatgpt.piri-chatgpt-dark .select-row {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.piri-platform-chatgpt.piri-chatgpt-dark .toggle-row:hover,
+body.piri-platform-chatgpt.piri-chatgpt-dark .select-row:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+body.piri-platform-chatgpt.piri-chatgpt-dark .toggle input:checked+.slider {
+  background: #ececf1;
+}
+
+body.piri-platform-chatgpt.piri-chatgpt-dark .slider {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+body.piri-platform-chatgpt.piri-chatgpt-dark select {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ececf1;
+}
+
+body.piri-platform-chatgpt.piri-chatgpt-dark select:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+body.piri-platform-chatgpt.piri-chatgpt-dark select:focus {
+  border-color: #ececf1;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.15);
+}
+
+body.piri-platform-chatgpt.piri-chatgpt-dark .action-btn {
+  background: #ececf1;
+  color: #212121;
+}
+
+body.piri-platform-chatgpt.piri-chatgpt-dark .action-btn:hover {
+  background: #d1d5db;
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+}
+
+body.piri-platform-chatgpt.piri-chatgpt-dark .platform-badge {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ececf1;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+body.piri-platform-chatgpt.piri-chatgpt-dark .platform-badge:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+body.piri-platform-chatgpt.piri-chatgpt-dark .toast {
+  background: #ececf1;
+  color: #212121;
+}
+
+body.piri-platform-chatgpt.piri-chatgpt-dark .popup-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.piri-platform-chatgpt.piri-chatgpt-dark .popup-footer p {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+body.piri-platform-chatgpt.piri-chatgpt-dark .version {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+body.piri-platform-chatgpt.piri-chatgpt-dark select option {
+  background: #212121;
+  color: #ececf1;
+}
+
+body.piri-platform-chatgpt .popup-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+body.piri-platform-chatgpt .logo-text {
+  background: none;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: #353740;
+  background-clip: unset;
+  color: #353740;
+  font-weight: 600;
+}
+
+body.piri-platform-chatgpt .status-indicator {
+  background: rgba(53, 55, 64, 0.1);
+  border: 1px solid rgba(53, 55, 64, 0.2);
+  color: #353740;
+}
+
+body.piri-platform-chatgpt .status-indicator.inactive {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+body.piri-platform-chatgpt .toggle-row,
+body.piri-platform-chatgpt .select-row {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+body.piri-platform-chatgpt .toggle-row:hover,
+body.piri-platform-chatgpt .select-row:hover {
+  background: #f7f7f8;
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+body.piri-platform-chatgpt .toggle input:checked+.slider {
+  background: #353740;
+}
+
+body.piri-platform-chatgpt .slider {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+body.piri-platform-chatgpt select {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #353740;
+}
+
+body.piri-platform-chatgpt select:hover {
+  background: #f7f7f8;
+  border-color: rgba(53, 55, 64, 0.2);
+}
+
+body.piri-platform-chatgpt select:focus {
+  border-color: #353740;
+  box-shadow: 0 0 0 2px rgba(53, 55, 64, 0.15);
+}
+
+body.piri-platform-chatgpt .action-btn {
+  background: #353740;
+  color: #ffffff;
+}
+
+body.piri-platform-chatgpt .action-btn:hover {
+  background: #2d2e35;
+  box-shadow: 0 6px 20px rgba(53, 55, 64, 0.3);
+}
+
+body.piri-platform-chatgpt .platform-badge {
+  background: rgba(53, 55, 64, 0.1);
+  color: #353740;
+  border: 1px solid rgba(53, 55, 64, 0.2);
+}
+
+body.piri-platform-chatgpt .platform-badge:hover {
+  background: rgba(53, 55, 64, 0.15);
+}
+
+body.piri-platform-chatgpt .toast {
+  background: #353740;
+  color: #ffffff;
+}
+
+body.piri-platform-chatgpt .popup-footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+body.piri-platform-chatgpt .popup-footer p {
+  color: rgba(53, 55, 64, 0.6);
+}
+
+body.piri-platform-chatgpt .version {
+  background: rgba(0, 0, 0, 0.05);
+  color: rgba(53, 55, 64, 0.6);
+}
+
+/* ========================================
+   Platform: Claude Theme (Anthropic Palette)
+   ======================================== */
+body.piri-platform-claude {
+  background: #191919;
+  color: #E5E4DF;
+  font-family: 'Söhne', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body.piri-platform-claude .popup-header {
+  border-bottom: 1px solid #262625;
+}
+
+body.piri-platform-claude .logo-text {
+  background: linear-gradient(135deg, #CC785C, #D4A27F);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+}
+
+body.piri-platform-claude .status-indicator {
+  background: rgba(204, 120, 92, 0.15);
+  border: 1px solid rgba(204, 120, 92, 0.3);
+  color: #CC785C;
+}
+
+body.piri-platform-claude .status-indicator.inactive {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+body.piri-platform-claude .toggle-row,
+body.piri-platform-claude .select-row {
+  background: #262625;
+  border: 1px solid #40403E;
+}
+
+body.piri-platform-claude .toggle-row:hover,
+body.piri-platform-claude .select-row:hover {
+  background: #40403E;
+  border-color: #666663;
+}
+
+body.piri-platform-claude .toggle input:checked+.slider {
+  background: #CC785C;
+}
+
+body.piri-platform-claude .slider {
+  background: #40403E;
+}
+
+body.piri-platform-claude select {
+  background: #262625;
+  border: 1px solid #40403E;
+  color: #E5E4DF;
+}
+
+body.piri-platform-claude select:hover {
+  background: #40403E;
+  border-color: #CC785C;
+}
+
+body.piri-platform-claude select:focus {
+  border-color: #CC785C;
+  box-shadow: 0 0 0 2px rgba(204, 120, 92, 0.2);
+}
+
+body.piri-platform-claude .action-btn {
+  background: #CC785C;
+  color: #FAFAF7;
+}
+
+body.piri-platform-claude .action-btn:hover {
+  background: #D4A27F;
+  box-shadow: 0 6px 20px rgba(204, 120, 92, 0.4);
+}
+
+body.piri-platform-claude .platform-badge {
+  background: rgba(204, 120, 92, 0.2);
+  color: #CC785C;
+  border: 1px solid rgba(204, 120, 92, 0.4);
+}
+
+body.piri-platform-claude .platform-badge:hover {
+  background: rgba(204, 120, 92, 0.3);
+}
+
+body.piri-platform-claude .toast {
+  background: #CC785C;
+  color: #FAFAF7;
+}
+
+body.piri-platform-claude .popup-footer {
+  border-top: 1px solid #262625;
+}
+
+body.piri-platform-claude .popup-footer p {
+  color: #BFBFBA;
+}
+
+body.piri-platform-claude .version {
+  background: #262625;
+  color: #91918D;
+}
+
+/* ========================================
+   Platform: Gemini Theme (Flat UI - No gradients/shadows)
+   ======================================== */
+body.piri-platform-gemini {
+  background: #1a1a1a;
+  color: #e8eaed;
+  font-family: 'Google Sans', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body.piri-platform-gemini .popup-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.piri-platform-gemini .logo-text {
+  background: none;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: #8ab4f8;
+  background-clip: unset;
+  color: #8ab4f8;
+  font-weight: 500;
+}
+
+body.piri-platform-gemini .status-indicator {
+  background: rgba(138, 180, 248, 0.1) !important;
+  border: 1px solid rgba(138, 180, 248, 0.2) !important;
+  color: #8ab4f8 !important;
+  border-radius: 20px !important;
+}
+
+body.piri-platform-gemini .status-indicator.inactive {
+  background: rgba(242, 139, 130, 0.1) !important;
+  border-color: rgba(242, 139, 130, 0.2) !important;
+  color: #f28b82 !important;
+}
+
+body.piri-platform-gemini .toggle-row,
+body.piri-platform-gemini .select-row {
+  background: #292929 !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-radius: 20px !important;
+  backdrop-filter: none !important;
+}
+
+body.piri-platform-gemini .toggle-row:hover,
+body.piri-platform-gemini .select-row:hover {
+  background: #333333 !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.piri-platform-gemini .toggle input:checked+.slider {
+  background: #8ab4f8 !important;
+}
+
+body.piri-platform-gemini .slider {
+  background: #5f6368 !important;
+}
+
+body.piri-platform-gemini .slider:before {
+  box-shadow: none !important;
+}
+
+body.piri-platform-gemini select {
+  background: #292929 !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  color: #e8eaed !important;
+  border-radius: 16px !important;
+}
+
+body.piri-platform-gemini select:hover {
+  background: #333333 !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.piri-platform-gemini select:focus {
+  border-color: #8ab4f8 !important;
+  box-shadow: none !important;
+}
+
+body.piri-platform-gemini .action-btn {
+  background: #8ab4f8 !important;
+  color: #1a1a1a !important;
+  border-radius: 28px !important;
+}
+
+body.piri-platform-gemini .action-btn:hover {
+  background: #aecbfa !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+body.piri-platform-gemini .action-btn:active {
+  background: #669df6 !important;
+}
+
+body.piri-platform-gemini .platform-badge {
+  background: rgba(138, 180, 248, 0.1) !important;
+  color: #8ab4f8 !important;
+  border: 1px solid rgba(138, 180, 248, 0.2) !important;
+  border-radius: 20px !important;
+}
+
+body.piri-platform-gemini .platform-badge:hover {
+  background: rgba(138, 180, 248, 0.15) !important;
+}
+
+body.piri-platform-gemini .toast {
+  background: #292929 !important;
+  color: #e8eaed !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 16px !important;
+}
+
+body.piri-platform-gemini .popup-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+body.piri-platform-gemini .popup-footer p {
+  color: #9aa0a6 !important;
+}
+
+body.piri-platform-gemini .version {
+  background: #292929 !important;
+  color: #9aa0a6 !important;
+  border-radius: 16px !important;
+}
