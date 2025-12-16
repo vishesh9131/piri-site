@@ -1,5 +1,16 @@
 // Chrome Web Store utility functions
 
+// TypeScript declaration for Chrome Web Store API
+declare global {
+  interface Window {
+    chrome?: {
+      webstore?: {
+        install: (url: string, onSuccess: () => void, onFailure: (error: string) => void) => void;
+      };
+    };
+  }
+}
+
 // Replace this with your actual Chrome Web Store extension ID once published
 const CHROME_WEB_STORE_EXTENSION_ID = 'YOUR_EXTENSION_ID_HERE';
 
