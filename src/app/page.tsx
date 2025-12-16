@@ -196,20 +196,18 @@ export default function Home() {
                       <motion.span 
                         key={`main-${i}`} 
                         variants={wordVariants} 
-                        className="inline-block mx-[0.15em]"
-                        style={{ color: 'rgba(250, 250, 250, 1)' }}
+                        className="inline-block mx-[0.15em] text-[var(--color-text-primary)]"
                       >
                         {word}
                       </motion.span>
                     ))}
                   </span>
-                  <span className="block" style={{ color: 'rgba(250, 250, 250, 1)' }}>
+                  <span className="block text-[var(--color-text-secondary)]">
                     {HERO_HEADINGS[headingIndex].sub.split(" ").map((word, i) => (
                       <motion.span 
                         key={`sub-${i}`} 
                         variants={wordVariants} 
-                        className="inline-block mx-[0.15em]"
-                        style={{ color: 'rgba(250, 250, 250, 1)' }}
+                        className="inline-block mx-[0.15em] text-[var(--color-text-secondary)]"
                       >
                         {word}
                       </motion.span>
@@ -261,7 +259,7 @@ export default function Home() {
             </div>
 
             <div className="absolute bottom-8 left-0 right-0 text-center z-20 pointer-events-none">
-              <span className="inline-flex items-center gap-2 px-4 py-2 bg-black/50 backdrop-blur-md rounded-full text-xs text-[var(--color-text-primary)]/50 border border-white/10">
+              <span className="inline-flex items-center gap-2 px-4 py-2 bg-black/60 backdrop-blur-md rounded-full text-xs text-white/70 border border-white/10">
                 <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" /></svg>
                 Drag, Resize, & Interact
               </span>
