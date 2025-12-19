@@ -11,11 +11,10 @@ declare global {
   }
 }
 
-// Replace this with your actual Chrome Web Store extension ID once published
-const CHROME_WEB_STORE_EXTENSION_ID = 'YOUR_EXTENSION_ID_HERE';
+const CHROME_WEB_STORE_EXTENSION_ID = 'hmcjeomjpobkoobpfcammdebhpoaaogg';
 
 export function getChromeWebStoreUrl(returnUrl?: string): string {
-  const baseUrl = `https://chrome.google.com/webstore/detail/${CHROME_WEB_STORE_EXTENSION_ID}`;
+  const baseUrl = `https://chromewebstore.google.com/detail/piri-ai-chat-navigator/${CHROME_WEB_STORE_EXTENSION_ID}`;
   
   if (returnUrl) {
     const encodedReturnUrl = encodeURIComponent(returnUrl);
