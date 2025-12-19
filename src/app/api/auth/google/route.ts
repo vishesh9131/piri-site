@@ -18,9 +18,17 @@ export async function GET(request: NextRequest) {
 
     const redirectUri = `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/auth/google`;
     const scope = 'openid email profile';
-    const state = Math.random().toString(36).substring(7);
+    
+    // Check if user came from post-install page
+    const referer = request.headers.get('referer') || '';
+    const returnTo = searchParams.get('return_to');
+    const returnToParam = returnTo || (referer.includes('/post-install') ? 'post-install' : '');
+    
+    // Store return_to in state parameter
+    const stateData = JSON.stringify({ return_to: returnToParam });
+    const state = Buffer.from(stateData).toString('base64');
 
-    const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=code&scope=${encodeURIComponent(scope)}&state=${state}&access_type=offline&prompt=consent`;
+    const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=code&scope=${encodeURIComponent(scope)}&state=${encodeURIComponent(state)}&access_type=offline&prompt=consent`;
 
     console.log('Redirecting to Google OAuth with:', { clientId, redirectUri });
     return NextResponse.redirect(authUrl);
@@ -65,7 +73,26 @@ export async function GET(request: NextRequest) {
 
     const userInfo = await userInfoResponse.json();
 
-    const response = NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}?auth=success`);
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    
+    // Decode state to get return_to destination
+    let redirectUrl = `${baseUrl}?auth=success`;
+    try {
+      if (state) {
+        const stateData = JSON.parse(Buffer.from(state, 'base64').toString());
+        if (stateData.return_to === 'post-install') {
+          redirectUrl = `${baseUrl}/post-install?auth=success`;
+        }
+      }
+    } catch (e) {
+      // If state decode fails, fallback to checking referer
+      const referer = request.headers.get('referer') || '';
+      if (referer.includes('/post-install')) {
+        redirectUrl = `${baseUrl}/post-install?auth=success`;
+      }
+    }
+
+    const response = NextResponse.redirect(redirectUrl);
     
     response.cookies.set('google_access_token', tokens.access_token, {
       httpOnly: true,

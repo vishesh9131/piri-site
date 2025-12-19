@@ -5,6 +5,7 @@ import { motion, AnimatePresence, Variants } from "framer-motion";
 import { InteractiveDemo } from "@/components/InteractiveDemo";
 import { FeatureShowcase } from '@/components/FeatureShowcase';
 import { GoogleSignIn } from '@/components/GoogleSignIn';
+import { SignInSuccessModal } from '@/components/SignInSuccessModal';
 import { getChromeWebStoreInstallUrl } from '@/lib/chrome-store';
 
 // Piri Logo SVG Component
@@ -142,6 +143,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-transparent selection:bg-blue-500/30">
+      <SignInSuccessModal />
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-[var(--color-border-subtle)] bg-[var(--color-bg)] backdrop-blur-xl">
         <nav className={`max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6 transition-all duration-300 ${isScrolled ? 'py-3' : 'py-4 md:py-6'}`}>
