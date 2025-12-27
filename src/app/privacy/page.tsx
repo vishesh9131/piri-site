@@ -2,8 +2,28 @@
 
 export default function PrivacyPolicy() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white py-20 px-6">
-      <div className="max-w-3xl mx-auto">
+    <div className="min-h-screen bg-[#0a0a0a] text-white py-20 px-6 relative overflow-hidden">
+      {/* Decorative background SVG */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
+        <div className="absolute top-0 right-0 transform translate-x-1/3 -translate-y-1/4">
+          <img 
+            src="/vector-decoration.svg" 
+            alt="" 
+            className="w-[800px] h-auto opacity-30"
+            aria-hidden="true"
+          />
+        </div>
+        <div className="absolute bottom-0 left-0 transform -translate-x-1/4 translate-y-1/4 rotate-180">
+          <img 
+            src="/vector-decoration.svg" 
+            alt="" 
+            className="w-[600px] h-auto opacity-20"
+            aria-hidden="true"
+          />
+        </div>
+      </div>
+      
+      <div className="max-w-3xl mx-auto relative z-10">
         <h1 className="text-4xl font-bold mb-8">Privacy Policy</h1>
         <p className="text-zinc-400 mb-8">Last updated: December 27, 2025</p>
 
