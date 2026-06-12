@@ -155,7 +155,11 @@ export default function Home() {
             <button onClick={toggleTheme} className="p-2 rounded-full hover:bg-[var(--color-bg-card)] transition-colors" title="Toggle Theme">
               {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
             </button>
-            <a href="#" className="hidden md:block text-sm font-medium text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors">Features</a>
+            <a href="#features" className="hidden md:block text-sm font-medium text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors">Features</a>
+            <a href="#whats-new" className="hidden md:flex items-center gap-1.5 text-sm font-medium text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors">
+              What&apos;s new
+              <span className="text-[10px] font-semibold text-[#A0816C] bg-[#A0816C]/10 border border-[#A0816C]/25 rounded-full px-1.5 py-px">v1.0.5</span>
+            </a>
             <div className="hidden md:block">
               <GoogleSignIn />
             </div>
@@ -308,50 +312,34 @@ export default function Home() {
 
       </main>
 
-      <footer className="relative overflow-hidden bg-[#050505] min-h-[50vh] md:min-h-[100vh] flex flex-col justify-between">
+      <footer className="relative overflow-hidden bg-[#050505] min-h-[45vh] md:min-h-[65vh] flex flex-col justify-end">
 
         {/* Massive Text Background - Positioned to be behind content */}
-        <div className="absolute inset-0 flex items-end justify-center pointer-events-none select-none overflow-hidden z-0 pb-[5vh]">
+        <div className="absolute inset-0 flex items-end justify-center pointer-events-none select-none overflow-hidden z-0">
           <h2
-            className="text-[35vw] md:text-[45vw] font-black leading-none tracking-tighter"
+            className="text-[35vw] md:text-[38vw] font-black leading-[0.8] tracking-tighter translate-y-[30%]"
             style={{
-              background: 'linear-gradient(to bottom, #1a1a1a 0%, #050505 80%)',
+              background: 'linear-gradient(to bottom, #1f1c18 0%, #050505 85%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
-              opacity: 0.8
+              opacity: 0.9
             }}
           >
             Piri
           </h2>
         </div>
 
-        {/* Content Wrapper */}
-        <div className="relative z-10 flex-1 flex flex-col items-center justify-center w-full py-20">
+        {/* Soft bronze glow */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[400px] md:w-[800px] h-[200px] md:h-[300px] bg-[#A0816C]/[0.06] rounded-full blur-[100px] pointer-events-none" />
 
-          {/* Background glow effects */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[600px] h-[150px] md:h-[300px] bg-[#A0816C]/5 rounded-full blur-[60px] md:blur-[120px]" />
-
-          {/* Tagline & CTAs */}
-          <div className="text-center space-y-6 md:space-y-10 relative px-4">
-            <h3 className="text-3xl md:text-5xl font-bold text-white tracking-tight">
-              Ready to try Piri?
-            </h3>
-            <p className="text-base md:text-xl text-zinc-400 font-medium tracking-wide max-w-lg mx-auto">
-              Free Chrome extension. Works with ChatGPT, Claude, and Gemini.
-            </p>
-
-            <div className="flex justify-center gap-4 pt-4">
-              <a
-                href={getChromeWebStoreInstallUrl()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-8 py-3 md:px-10 md:py-4 bg-white text-black rounded-full font-bold text-sm md:text-base hover:bg-zinc-200 transition-all hover:scale-105 shadow-[0_0_40px_rgba(255,255,255,0.15)]"
-              >
-                Add to Chrome
-              </a>
-            </div>
-          </div>
+        {/* Closing line */}
+        <div className="relative z-10 text-center px-6 pt-24 md:pt-32 pb-16 md:pb-24">
+          <PiriLogo size={36} className="text-[#A0816C] mx-auto mb-6 opacity-90" />
+          <p className="text-zinc-400 text-sm md:text-base tracking-wide max-w-sm mx-auto leading-relaxed">
+            A small tool for a stupid problem.
+            <span className="block mt-1 text-zinc-500">Made with mild resentment, used with great relief.</span>
+          </p>
         </div>
 
         {/* Bottom Links */}
@@ -359,9 +347,11 @@ export default function Home() {
           <div className="max-w-7xl mx-auto py-6 md:py-8 px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
             <div className="flex items-center gap-3 text-zinc-500">
               <PiriLogo size={20} className="text-[#A0816C]" />
-              <span className="text-sm font-medium">© 2024 Piri</span>
+              <span className="text-sm font-medium">© 2026 Piri</span>
+              <span className="text-[11px] font-medium text-zinc-600 border border-white/[0.08] rounded-full px-2.5 py-0.5">v1.0.5</span>
             </div>
             <div className="flex items-center gap-8 text-sm text-zinc-500 font-medium">
+              <a href="/privacy" className="hover:text-white transition-colors">Privacy</a>
               <a href="https://github.com/vishesh9131" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">GitHub</a>
             </div>
           </div>

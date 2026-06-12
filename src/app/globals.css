@@ -171,6 +171,23 @@ body {
   animation: slideInUp 0.3s ease forwards;
 }
 
+/* Serif display accent */
+.font-serif-display {
+  font-family: var(--font-fraunces), Georgia, 'Times New Roman', serif;
+}
+
+/* Hairline rule that fades at both ends */
+.hairline-fade {
+  background: linear-gradient(to right, transparent, var(--color-border) 20%, var(--color-border) 80%, transparent);
+  height: 1px;
+}
+
+/* Subtle dot grid backdrop for feature panels */
+.dot-grid {
+  background-image: radial-gradient(circle, var(--color-border) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
 /* Gradient text */
 .gradient-text {
   background: linear-gradient(135deg, #FAFAFA 0%, #2D7FF9 50%, #10B981 100%);
